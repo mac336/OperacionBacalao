@@ -203,7 +203,57 @@
     .visit-row { flex-direction: column; gap: 4px; }
     .visit-time { min-width: auto; }
   }
+
+/* Collapsed past days */
+.day-card.past .day-body {
+display: none;
+}
+.day-card.past .day-header {
+opacity: 0.6;
+cursor: pointer;
+}
+.day-card.past .day-header:hover {
+opacity: 0.85;
+}
+.day-card.past .day-title::after {
+content: ’ ✓ Visitado’;
+font-size: 0.7rem;
+font-family: ‘DM Sans’, sans-serif;
+background: rgba(255,255,255,0.3);
+padding: 2px 8px;
+border-radius: 4px;
+margin-left: 8px;
+vertical-align: middle;
+}
+.day-card.past.expanded .day-body {
+display: block;
+}
+.day-card.past.expanded .day-header {
+opacity: 1;
+}
+
+.toggle-btn {
+display: none;
+width: 100%;
+padding: 14px;
+margin-top: 18px;
+border: 2px dashed #c4b8aa;
+border-radius: 12px;
+background: transparent;
+color: #8a7e72;
+font-family: ‘DM Sans’, sans-serif;
+font-size: 0.9rem;
+font-weight: 600;
+cursor: pointer;
+transition: all 0.2s;
+}
+.toggle-btn:hover {
+background: #ede7e0;
+color: #2d2a26;
+}
+.toggle-btn.visible { display: block; }
 </style>
+
 </head>
 <body>
 <div class="container">
@@ -216,7 +266,7 @@
 
   <!-- ============ DOMINGO 29 - PLASENCIA ============ -->
 
-  <div class="day-card">
+  <div class="day-card" data-date="2026-03-29">
     <div class="day-header plasencia">
       <div>
         <div class="day-title">Plasencia</div>
@@ -231,6 +281,7 @@
     </div>
     <div class="day-body">
       <div class="source-tag">📡 Meteored · Nubes y claros · Viento: 24–49 km/h</div>
+      <div class="source-tag" style="background:#fff3cd;border-color:#f0dcc4;color:#856404;">🕐 ¡CAMBIO DE HORA! La noche del sáb→dom se adelanta 1h (2:00→3:00). Perdéis 1h de sueño.</div>
       <div class="visit-row">
         <div class="visit-time">9:00</div>
         <div class="visit-info"><div class="visit-name">Salida</div></div>
@@ -240,6 +291,7 @@
         <div class="visit-info">
           <div class="visit-name">Visita Plasencia</div>
           <div class="visit-detail">Catedral (6€) · Murallas (2€)</div>
+          <div class="visit-detail" style="color:#cc6644;font-weight:600;">⚠️ DOMINGO: Catedral 10:30–16:00 · Murallas solo 10:00–13:45 (sin tarde)</div>
           <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJI8Fr70oWPg0RRa0abes5lS0" target="_blank">📍 Catedral – Pl. Catedral, s/n</a><br>
           <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJyTkJYDYWPg0RPMHfhTKeBqA" target="_blank">📍 Murallas – C. Torre Lucía</a>
         </div>
@@ -255,6 +307,7 @@
         <div class="restaurant-name">53 CarpeDiem</div>
         <div class="restaurant-time">15:00 – 17:00</div>
         <div class="restaurant-addr">C. Vidrieras, 8, 10600 Plasencia · ⭐ 4.6</div>
+        <div class="visit-detail">Horario domingo: 12:00–17:00 y 20:00–1:00 ✅</div>
         <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJj0CEMn4XPg0R_jmtUAU8pvU" target="_blank">📍 Abrir en Google Maps</a>
       </div>
       <div class="hotel-section">
@@ -268,7 +321,7 @@
 
   <!-- ============ LUNES 30 - MARVAO ============ -->
 
-  <div class="day-card">
+  <div class="day-card" data-date="2026-03-30">
     <div class="day-header marvao">
       <div>
         <div class="day-title">Marvão + Castelo de Vide</div>
@@ -307,6 +360,7 @@
         <div class="restaurant-name">J.J. Videira</div>
         <div class="restaurant-time">14:00 – 15:30</div>
         <div class="restaurant-addr">R. Nova 11, 7330-328 Marvão · ⭐ 4.6</div>
+        <div class="visit-detail" style="color:#cc6644;font-weight:600;">⚠️ LUNES: Solo abre 12:00–15:00. ¡Cierra a las 15:00! Llegad pronto.</div>
         <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJ3cGtNhq_Fw0R-kRXYETu-O8" target="_blank">📍 Abrir en Google Maps</a>
       </div>
       <div class="hotel-section">
@@ -320,7 +374,7 @@
 
   <!-- ============ MARTES 31 - FÁTIMA / LISBOA ============ -->
 
-  <div class="day-card">
+  <div class="day-card" data-date="2026-03-31">
     <div class="day-header lisboa">
       <div>
         <div class="day-title">Fátima → Lisboa</div>
@@ -382,7 +436,7 @@
 
   <!-- ============ MIÉRCOLES 1 - LISBOA ============ -->
 
-  <div class="day-card">
+  <div class="day-card" data-date="2026-04-01">
     <div class="day-header lisboa">
       <div>
         <div class="day-title">Lisboa <span class="changes-badge">ACTUALIZADO</span></div>
@@ -416,6 +470,7 @@
         <div class="visit-time">11:30 – 13:00</div>
         <div class="visit-info">
           <div class="visit-name">Torre Belém / Monumento / Pastel de Belém</div>
+          <div class="visit-detail" style="color:#cc6644;font-weight:600;">🚫 TORRE BELÉM CERRADA por obras de restauración hasta verano 2026. Solo se puede ver por fuera.</div>
           <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJS5zCw0LLHg0RP1FSz63cAjA" target="_blank">📍 Torre de Belém – Av. Brasília</a><br>
           <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJW3H9LkXLHg0RZZZttMb27_8" target="_blank">📍 Pastéis de Belém – R. de Belém 84-92</a>
         </div>
@@ -441,7 +496,7 @@
         <div class="restaurant-time">13:00 – 15:00</div>
         <div class="restaurant-addr">R. Damião de Góis 12A, 1400-119 Lisboa · ⭐ 4.6</div>
         <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJjS67CHvLHg0RqWtzd9A_NJA" target="_blank">📍 Abrir en Google Maps</a>
-        <div class="note">⚠️ Cerrado domingos. Confirmar reserva.</div>
+        <div class="note">Horario miércoles: 7:00–23:00 ✅</div>
       </div>
       <div class="hotel-section">
         <h4>🏨 Hotel</h4>
@@ -453,7 +508,7 @@
 
   <!-- ============ JUEVES 2 - SINTRA ============ -->
 
-  <div class="day-card">
+  <div class="day-card" data-date="2026-04-02">
     <div class="day-header sintra">
       <div>
         <div class="day-title">Sintra <span class="changes-badge">ACTUALIZADO</span></div>
@@ -479,6 +534,7 @@
         <div class="visit-time">10:00 – 12:00</div>
         <div class="visit-info">
           <div class="visit-name">Palacio da Pena – COMPRADO</div>
+          <div class="visit-detail">Horario: 9:30–18:30 ✅</div>
           <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJZ1qc8r_aHg0RWDtny30aJ3c" target="_blank">📍 Estrada da Pena, 2710-609 Sintra</a>
         </div>
       </div>
@@ -486,6 +542,7 @@
         <div class="visit-time">16:00 – 18:30</div>
         <div class="visit-info">
           <div class="visit-name">Quinta da Regaleira – COMPRADO <span class="changes-badge">YA COMPRADO</span></div>
+          <div class="visit-detail" style="color:#cc6644;font-weight:600;">⚠️ Cierra a las 17:30. El itinerario dice hasta 18:30 pero os echarán a las 17:30.</div>
           <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJe9TGZMLaHg0RI2WK1BbF4b8" target="_blank">📍 Quinta da Regaleira, 2710-567 Sintra</a>
         </div>
       </div>
@@ -505,7 +562,7 @@
 
   <!-- ============ VIERNES 3 - MÉRIDA ============ -->
 
-  <div class="day-card">
+  <div class="day-card" data-date="2026-04-03">
     <div class="day-header merida">
       <div>
         <div class="day-title">Mérida → Madrid</div>
@@ -529,6 +586,7 @@
         <div class="visit-info">
           <div class="visit-name">Teatro/Foro Romano de Mérida</div>
           <div class="visit-detail">Adulto: 17€ / +65: 8€ (9h-21h)</div>
+          <div class="visit-detail" style="color:#cc6644;font-weight:600;">⚠️ Google indica horario 9:00–18:00. Verificar si 21h es solo verano.</div>
           <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJ-ZWdVcAmFA0Rd2pazV9qErY" target="_blank">📍 Plaza Margarita Xirgu, s/n, 06800 Mérida</a>
         </div>
       </div>
@@ -557,6 +615,52 @@
     <strong>Cambios detectados vs. versión anterior:</strong> restaurante miércoles (Pérola de Belém), Quinta Regaleira ya comprada, parkings y horarios ajustados.
   </div>
 
+<button class="toggle-btn" id="togglePast">📋 Mostrar días pasados</button>
+
 </div>
+
+<script>
+(function() {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  const cards = document.querySelectorAll('.day-card[data-date]');
+  const toggleBtn = document.getElementById('togglePast');
+  let hasPast = false;
+  let showingAll = false;
+
+  cards.forEach(card => {
+    const cardDate = new Date(card.getAttribute('data-date') + 'T00:00:00');
+    if (cardDate < today) {
+      card.classList.add('past');
+      hasPast = true;
+
+      // Allow clicking header to expand/collapse individual past day
+      card.querySelector('.day-header').addEventListener('click', function() {
+        card.classList.toggle('expanded');
+      });
+    }
+  });
+
+  if (hasPast) {
+    toggleBtn.classList.add('visible');
+  }
+
+  toggleBtn.addEventListener('click', function() {
+    showingAll = !showingAll;
+    cards.forEach(card => {
+      if (card.classList.contains('past')) {
+        if (showingAll) {
+          card.classList.add('expanded');
+        } else {
+          card.classList.remove('expanded');
+        }
+      }
+    });
+    toggleBtn.textContent = showingAll ? '🙈 Ocultar días pasados' : '📋 Mostrar días pasados';
+  });
+})();
+</script>
+
 </body>
 </html>
