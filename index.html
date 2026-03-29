@@ -7,211 +7,188 @@
 <title>Operación Bacalao</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'DM Sans', sans-serif; background: #f5f0eb; color: #2d2a26; padding: 20px; min-height: 100vh; }
-.container { max-width: 900px; margin: 0 auto; }
-h1 { font-family: 'DM Serif Display', serif; font-size: 2.2rem; text-align: center; margin-bottom: 6px; color: #fff; }
-.title-wrap { background: #1a1715; border-radius: 16px; padding: 24px 20px 18px; margin-bottom: 24px; }
-.subtitle { text-align: center; color: rgba(255,255,255,0.6); font-size: 0.9rem; margin-bottom: 0; font-weight: 500; }
-.day-card { background: #fff; border-radius: 16px; margin-bottom: 18px; overflow: hidden; box-shadow: 0 2px 12px rgba(0,0,0,0.06); border: 1px solid rgba(0,0,0,0.04); }
-.day-header { padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
-.day-header.plasencia { background: linear-gradient(135deg, #d4a574, #c4956a); }
-.day-header.marvao { background: linear-gradient(135deg, #7db07e, #6a9c6b); }
-.day-header.lisboa { background: linear-gradient(135deg, #5b8fb9, #4a7ea8); }
-.day-header.sintra { background: linear-gradient(135deg, #9b7bb5, #8a6aa4); }
-.day-header.merida { background: linear-gradient(135deg, #cc7e6a, #bb6d59); }
-.day-title { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,0.15); }
-.day-date { color: rgba(255,255,255,0.85); font-size: 0.82rem; font-weight: 500; }
-.temp-badge { display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.2); backdrop-filter: blur(4px); border-radius: 10px; padding: 8px 14px; color: #fff; font-weight: 600; font-size: 0.9rem; }
-.temp-badge .icon { font-size: 1.4rem; }
-.temp-max { color: #fff; } .temp-min { color: rgba(255,255,255,0.75); } .temp-sep { color: rgba(255,255,255,0.5); margin: 0 2px; }
-.day-body { padding: 16px 20px; }
-.source-tag { font-size: 0.7rem; color: #a89e92; background: #faf7f4; border-radius: 6px; padding: 5px 10px; margin-bottom: 12px; display: inline-block; border: 1px solid #ede7e0; line-height: 1.4; }
-.visit-row { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid #f0ebe5; align-items: flex-start; }
-.visit-row:last-child { border-bottom: none; }
-.visit-time { font-size: 0.78rem; color: #8a7e72; font-weight: 600; min-width: 90px; padding-top: 2px; white-space: nowrap; }
-.visit-info { flex: 1; }
-.visit-name { font-weight: 600; font-size: 0.92rem; color: #2d2a26; margin-bottom: 2px; }
-.visit-detail { font-size: 0.8rem; color: #8a7e72; }
-.map-link { display: inline-flex; align-items: center; gap: 4px; font-size: 0.72rem; color: #4a7ea8; text-decoration: none; margin-top: 3px; font-weight: 600; }
-.map-link:hover { text-decoration: underline; }
-.restaurant-section { background: #fdfaf6; border-radius: 10px; padding: 12px 16px; margin-top: 12px; border: 1px dashed #e0d5c8; }
-.restaurant-section h4 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; color: #a0784e; margin-bottom: 6px; }
-.restaurant-name { font-weight: 700; font-size: 0.95rem; color: #2d2a26; }
-.restaurant-time { font-size: 0.82rem; color: #8a7e72; }
-.restaurant-addr { font-size: 0.75rem; color: #a89e92; margin-top: 2px; }
-.note { font-size: 0.75rem; color: #b0a498; font-style: italic; margin-top: 4px; }
-.hotel-section { background: #f4f7fa; border-radius: 10px; padding: 12px 16px; margin-top: 12px; border: 1px solid #dde5ed; }
-.hotel-section h4 { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 1px; color: #5b8fb9; margin-bottom: 6px; }
-.weather-note { text-align: center; font-size: 0.72rem; color: #b0a498; margin-top: 20px; padding-top: 14px; border-top: 1px solid #e8e0d8; line-height: 1.6; }
-.changes-badge { display: inline-block; background: #fff3cd; color: #856404; font-size: 0.68rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; margin-left: 6px; vertical-align: middle; }
-.fix-badge { display: inline-block; background: #d4edda; color: #155724; font-size: 0.68rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; margin-left: 6px; vertical-align: middle; }
-
-/* ===== EXTRAS COLLAPSIBLE ===== */
-.extras-wrap { margin-top: 12px; }
-.extras-toggle {
-width: 100%; padding: 10px 16px; border: 1px solid #e8ddd2; border-radius: 10px;
-background: linear-gradient(135deg, #fef9f4, #fdf5ed); color: #8a6d4e; cursor: pointer;
-font-family: ‘DM Sans’, sans-serif; font-size: 0.82rem; font-weight: 600;
-display: flex; align-items: center; justify-content: space-between; transition: all 0.2s;
-}
-.extras-toggle:hover { background: linear-gradient(135deg, #fcf1e5, #fbeadb); border-color: #d4c4b0; }
-.extras-toggle .arrow { transition: transform 0.3s; font-size: 0.7rem; }
-.extras-toggle.open .arrow { transform: rotate(180deg); }
-.extras-content {
-max-height: 0; overflow: hidden; transition: max-height 0.4s ease;
-border-radius: 0 0 10px 10px;
-}
-.extras-content.open { max-height: 2000px; }
-.extras-inner { padding: 12px 0 0 0; }
-.extra-card {
-background: #fff; border: 1px solid #f0e8de; border-radius: 10px; padding: 10px 14px;
-margin-bottom: 8px; display: flex; gap: 10px; align-items: flex-start;
-}
-.extra-card:last-child { margin-bottom: 0; }
-.extra-emoji { font-size: 1.4rem; min-width: 28px; text-align: center; padding-top: 2px; }
-.extra-info { flex: 1; }
-.extra-name { font-weight: 700; font-size: 0.85rem; color: #2d2a26; }
-.extra-rating { font-size: 0.72rem; color: #c4956a; font-weight: 700; margin-left: 4px; }
-.extra-addr { font-size: 0.72rem; color: #a89e92; margin-top: 1px; }
-.extra-detail { font-size: 0.72rem; color: #8a7e72; margin-top: 2px; }
-.extra-highlight { font-size: 0.7rem; color: #6a9c6b; font-weight: 600; margin-top: 2px; }
-
-@media (max-width: 600px) {
-body { padding: 12px; }
-h1 { font-size: 1.6rem; }
-.day-header { padding: 14px 16px; flex-direction: column; align-items: flex-start; }
-.temp-badge { align-self: flex-start; }
-.visit-row { flex-direction: column; gap: 4px; }
-.visit-time { min-width: auto; }
-}
-.day-card.past .day-body { display: none; }
-.day-card.past .day-header { opacity: 0.6; cursor: pointer; }
-.day-card.past .day-header:hover { opacity: 0.85; }
-.day-card.past .day-title::after { content: ’ ✓ Visitado’; font-size: 0.7rem; font-family: ‘DM Sans’, sans-serif; background: rgba(255,255,255,0.3); padding: 2px 8px; border-radius: 4px; margin-left: 8px; vertical-align: middle; }
-.day-card.past.expanded .day-body { display: block; }
-.day-card.past.expanded .day-header { opacity: 1; }
-.toggle-btn { display: none; width: 100%; padding: 14px; margin-top: 18px; border: 2px dashed #c4b8aa; border-radius: 12px; background: transparent; color: #8a7e72; font-family: ‘DM Sans’, sans-serif; font-size: 0.9rem; font-weight: 600; cursor: pointer; transition: all 0.2s; }
-.toggle-btn:hover { background: #ede7e0; color: #2d2a26; }
-.toggle-btn.visible { display: block; }
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:#f5f0eb;color:#2d2a26;padding:20px;min-height:100vh}
+.container{max-width:900px;margin:0 auto}
+h1{font-family:'DM Serif Display',serif;font-size:2.2rem;text-align:center;margin-bottom:6px;color:#fff}
+.title-wrap{background:#1a1715;border-radius:16px;padding:24px 20px 18px;margin-bottom:24px}
+.subtitle{text-align:center;color:rgba(255,255,255,0.6);font-size:.9rem;font-weight:500}
+.day-card{background:#fff;border-radius:16px;margin-bottom:18px;overflow:hidden;box-shadow:0 2px 12px rgba(0,0,0,.06);border:1px solid rgba(0,0,0,.04)}
+.day-header{padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.day-header.plasencia{background:linear-gradient(135deg,#d4a574,#c4956a)}
+.day-header.marvao{background:linear-gradient(135deg,#7db07e,#6a9c6b)}
+.day-header.lisboa{background:linear-gradient(135deg,#5b8fb9,#4a7ea8)}
+.day-header.sintra{background:linear-gradient(135deg,#9b7bb5,#8a6aa4)}
+.day-header.merida{background:linear-gradient(135deg,#cc7e6a,#bb6d59)}
+.day-title{font-family:'DM Serif Display',serif;font-size:1.3rem;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.15)}
+.day-date{color:rgba(255,255,255,.85);font-size:.82rem;font-weight:500}
+.temp-badge{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.2);backdrop-filter:blur(4px);border-radius:10px;padding:8px 14px;color:#fff;font-weight:600;font-size:.9rem}
+.temp-badge .icon{font-size:1.4rem}.temp-max{color:#fff}.temp-min{color:rgba(255,255,255,.75)}.temp-sep{color:rgba(255,255,255,.5);margin:0 2px}
+.day-body{padding:16px 20px}
+.source-tag{font-size:.7rem;color:#a89e92;background:#faf7f4;border-radius:6px;padding:5px 10px;margin-bottom:12px;display:inline-block;border:1px solid #ede7e0;line-height:1.4}
+.visit-row{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #f0ebe5;align-items:flex-start}
+.visit-row:last-child{border-bottom:none}
+.visit-time{font-size:.78rem;color:#8a7e72;font-weight:600;min-width:90px;padding-top:2px;white-space:nowrap}
+.visit-info{flex:1}.visit-name{font-weight:600;font-size:.92rem;color:#2d2a26;margin-bottom:2px}
+.visit-detail{font-size:.8rem;color:#8a7e72}
+.map-link{display:inline-flex;align-items:center;gap:4px;font-size:.72rem;color:#4a7ea8;text-decoration:none;margin-top:3px;font-weight:600}
+.map-link:hover{text-decoration:underline}
+.restaurant-section{background:none;border-radius:0;padding:10px 0;margin-top:0;border:none;border-bottom:1px solid #f0ebe5;display:grid;grid-template-columns:90px 1fr;gap:4px 12px}
+.restaurant-section h4{font-size:.78rem;color:#8a7e72;font-weight:600;text-transform:none;letter-spacing:0;margin-bottom:0;padding-top:2px;white-space:nowrap;grid-row:1}
+.restaurant-section>*:not(h4){grid-column:2}
+.restaurant-inner{display:contents}
+.restaurant-name{font-weight:600;font-size:.92rem;color:#2d2a26;margin-bottom:2px}
+.restaurant-time{font-size:.82rem;color:#8a7e72}
+.restaurant-addr{font-size:.8rem;color:#8a7e72;margin-top:1px}
+.note{font-size:.75rem;color:#b0a498;font-style:italic;margin-top:4px}
+.hotel-section{background:#f4f7fa;border-radius:10px;padding:12px 16px;margin-top:12px;border:1px solid #dde5ed}
+.hotel-section h4{font-size:.78rem;text-transform:uppercase;letter-spacing:1px;color:#5b8fb9;margin-bottom:6px}
+.weather-note{text-align:center;font-size:.72rem;color:#b0a498;margin-top:20px;padding-top:14px;border-top:1px solid #e8e0d8;line-height:1.6}
+.changes-badge{display:inline-block;background:#fff3cd;color:#856404;font-size:.68rem;font-weight:700;padding:2px 7px;border-radius:4px;margin-left:6px;vertical-align:middle}
+.fix-badge{display:inline-block;background:#d4edda;color:#155724;font-size:.68rem;font-weight:700;padding:2px 7px;border-radius:4px;margin-left:6px;vertical-align:middle}
+/* EXTRAS */
+.extras-wrap{margin-top:10px;margin-bottom:2px}
+.extras-toggle{width:100%;padding:9px 14px;border:1px solid #e8ddd2;border-radius:10px;background:linear-gradient(135deg,#fef9f4,#fdf5ed);color:#8a6d4e;cursor:pointer;font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:600;display:flex;align-items:center;justify-content:space-between;transition:all .2s}
+.extras-toggle:hover{background:linear-gradient(135deg,#fcf1e5,#fbeadb);border-color:#d4c4b0}
+.extras-toggle .arrow{transition:transform .3s;font-size:.7rem}
+.extras-toggle.open .arrow{transform:rotate(180deg)}
+.extras-content{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.extras-content.open{max-height:2000px}
+.extras-inner{padding:10px 0 0}
+.extra-card{background:#fff;border:1px solid #f0e8de;border-radius:10px;padding:10px 14px;margin-bottom:8px;display:flex;gap:10px;align-items:flex-start}
+.extra-card:last-child{margin-bottom:0}
+.extra-emoji{font-size:1.3rem;min-width:26px;text-align:center;padding-top:2px}
+.extra-info{flex:1}
+.extra-name{font-weight:700;font-size:.83rem;color:#2d2a26}
+.extra-rating{font-size:.72rem;color:#c4956a;font-weight:700;margin-left:4px}
+.extra-addr{font-size:.72rem;color:#a89e92;margin-top:1px}
+.extra-detail{font-size:.72rem;color:#8a7e72;margin-top:2px}
+.extra-highlight{font-size:.7rem;color:#6a9c6b;font-weight:600;margin-top:2px}
+/* Hotel shop toggle - blue tinted */
+.extras-toggle.hotel-shop{background:linear-gradient(135deg,#f0f5fa,#e8eef5);border-color:#d0dae6;color:#4a6b8a}
+.extras-toggle.hotel-shop:hover{background:linear-gradient(135deg,#e5ecf4,#dce5ef);border-color:#b8c8d8}
+@media(max-width:600px){body{padding:12px}h1{font-size:1.6rem}.day-header{padding:14px 16px;flex-direction:column;align-items:flex-start}.temp-badge{align-self:flex-start}.visit-row{flex-direction:column;gap:4px}.visit-time{min-width:auto}.restaurant-section{display:block}.restaurant-section h4{min-width:auto;margin-bottom:4px}}
+.day-card.past .day-body{display:none}.day-card.past .day-header{opacity:.6;cursor:pointer}.day-card.past .day-header:hover{opacity:.85}
+.day-card.past .day-title::after{content:' ✓ Visitado';font-size:.7rem;font-family:'DM Sans',sans-serif;background:rgba(255,255,255,.3);padding:2px 8px;border-radius:4px;margin-left:8px;vertical-align:middle}
+.day-card.past.expanded .day-body{display:block}.day-card.past.expanded .day-header{opacity:1}
+.toggle-btn{display:none;width:100%;padding:14px;margin-top:18px;border:2px dashed #c4b8aa;border-radius:12px;background:transparent;color:#8a7e72;font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .2s}
+.toggle-btn:hover{background:#ede7e0;color:#2d2a26}.toggle-btn.visible{display:block}
+/* INFO BUTTON - blue, far right, blinks 3s */
+.info-btn{width:38px;height:38px;border-radius:50%;border:2.5px solid rgba(255,255,255,.7);background:rgba(70,130,200,.85);color:#fff;font-size:1.1rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;font-family:Georgia,serif;font-style:italic;line-height:1;flex-shrink:0;box-shadow:0 2px 8px rgba(70,130,200,.4);animation:infoBlink .6s ease-in-out 5}
+.info-btn:hover{background:rgba(50,110,190,.95);border-color:#fff;transform:scale(1.1);box-shadow:0 4px 14px rgba(70,130,200,.5)}
+@keyframes infoBlink{0%,100%{box-shadow:0 2px 8px rgba(70,130,200,.4);transform:scale(1)}50%{box-shadow:0 0 18px rgba(70,150,220,.9),0 0 30px rgba(70,150,220,.4);transform:scale(1.15)}}
+/* SPEECH BUTTON */
+.speech-btn{height:36px;border-radius:18px;border:none;background:#f0ebe5;color:#8a7e72;font-size:.78rem;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;padding:0 14px;transition:all .2s;font-family:'DM Sans',sans-serif}
+.speech-btn:hover{background:#e0d5c8;color:#2d2a26}
+.speech-btn.playing{background:#d4edda;color:#155724;animation:pulse 1.5s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.7}}
+/* MODAL */
+.modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.55);z-index:1000;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(3px)}
+.modal-overlay.open{display:flex}
+.modal-box{background:#fff;border-radius:18px;max-width:520px;width:100%;max-height:85vh;overflow-y:auto;box-shadow:0 20px 60px rgba(0,0,0,.25);position:relative;animation:modalIn .3s ease}
+@keyframes modalIn{from{opacity:0;transform:translateY(20px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+.modal-header{padding:20px 20px 0;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:#fff;z-index:2;border-radius:18px 18px 0 0}
+.modal-title{font-family:'DM Serif Display',serif;font-size:1.2rem;color:#2d2a26}
+.modal-close{width:32px;height:32px;border-radius:50%;border:none;background:#f0ebe5;color:#8a7e72;font-size:1.2rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
+.modal-close:hover{background:#e0d5c8;color:#2d2a26}
+.modal-body{padding:16px 20px 24px}
+.modal-section{margin-bottom:16px}
+.modal-section:last-child{margin-bottom:0}
+.modal-section-title{font-size:.72rem;text-transform:uppercase;letter-spacing:1.2px;font-weight:700;margin-bottom:6px;display:flex;align-items:center;gap:6px}
+.modal-section-title.history{color:#9b7bb5}
+.modal-section-title.food{color:#cc7e6a}
+.modal-section-title.fun{color:#5b8fb9}
+.modal-section-title.tip{color:#6a9c6b}
+.modal-section-title.media{color:#c4956a}
+.modal-link{display:flex;align-items:center;gap:8px;padding:8px 12px;background:#faf7f4;border:1px solid #ede7e0;border-radius:8px;margin-bottom:6px;text-decoration:none;color:#2d2a26;transition:all .15s;font-size:.8rem}
+.modal-link:last-child{margin-bottom:0}
+.modal-link:hover{background:#f0ebe5;border-color:#d4c4b0;transform:translateX(2px)}
+.modal-link-icon{font-size:1.2rem;min-width:24px;text-align:center}
+.modal-link-text{flex:1}
+.modal-link-title{font-weight:700;font-size:.8rem}
+.modal-link-desc{font-size:.7rem;color:#8a7e72;margin-top:1px}
+.modal-link-badge{font-size:.6rem;font-weight:700;padding:2px 6px;border-radius:4px;white-space:nowrap}
+.modal-link-badge.free{background:#d4edda;color:#155724}
+.modal-link-badge.official{background:#e0e7f1;color:#3a5a7c}
+.modal-link-badge.useful{background:#fff3cd;color:#856404}
+.modal-fact{font-size:.82rem;color:#4a4540;line-height:1.55;margin-bottom:8px;padding-left:4px}
+.modal-fact:last-child{margin-bottom:0}
+.modal-emoji{font-size:1rem}
+.modal-divider{height:1px;background:#f0ebe5;margin:14px 0}
 </style>
-
 </head>
 <body>
 <div class="container">
-
   <div class="title-wrap">
     <h1>🐟 Operación Bacalao</h1>
     <p class="subtitle">29 marzo – 3 abril 2026 · Corregido con datos del Excel</p>
   </div>
 
-  <!-- ============ DOMINGO 29 - PLASENCIA ============ -->
+  <!-- ====== DOMINGO 29 - PLASENCIA ====== -->
 
   <div class="day-card" data-date="2026-03-29">
     <div class="day-header plasencia">
       <div><div class="day-title">Plasencia</div><div class="day-date">Domingo 29 de marzo</div></div>
-      <div class="temp-badge"><span class="icon">⛅</span><span class="temp-min">6°</span><span class="temp-sep">–</span><span class="temp-max">16°</span></div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <div class="temp-badge"><span class="icon">⛅</span><span class="temp-min">6°</span><span class="temp-sep">–</span><span class="temp-max">16°</span></div>
+        <button class="info-btn" onclick="event.stopPropagation();openInfo('plasencia')">i</button>
+      </div>
     </div>
     <div class="day-body">
       <div class="source-tag">📡 Meteored · Nubes y claros · Viento: 24–49 km/h</div>
-      <div class="source-tag" style="background:#fff3cd;border-color:#f0dcc4;color:#856404;">🕐 ¡CAMBIO DE HORA! La noche del sáb→dom se adelanta 1h (2:00→3:00). Perdéis 1h de sueño.</div>
+      <div class="source-tag" style="background:#fff3cd;border-color:#f0dcc4;color:#856404;">🕐 ¡CAMBIO DE HORA! sáb→dom se adelanta 1h (2:00→3:00)</div>
       <div class="visit-row"><div class="visit-time">9:00</div><div class="visit-info"><div class="visit-name">Salida</div></div></div>
       <div class="visit-row">
         <div class="visit-time">12:00 – 15:00</div>
         <div class="visit-info">
           <div class="visit-name">Visita Plasencia</div>
           <div class="visit-detail">Catedral: 6€ / 11h-14h y 16-19h · Murallas: 2€ / 11h-14h y 16-19h</div>
-          <div class="visit-detail" style="color:#cc6644;font-weight:600;">⚠️ DOMINGO: Verificar horarios reales de domingo antes de ir.</div>
-          <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJI8Fr70oWPg0RRa0abes5lS0" target="_blank">📍 Catedral – Pl. Catedral, s/n</a><br>
-          <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJyTkJYDYWPg0RPMHfhTKeBqA" target="_blank">📍 Murallas – C. Torre Lucía</a>
+          <div class="visit-detail" style="color:#cc6644;font-weight:600;">⚠️ DOMINGO: Verificar horarios reales de domingo.</div>
+          <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJI8Fr70oWPg0RRa0abes5lS0" target="_blank">📍 Catedral</a> · <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJyTkJYDYWPg0RPMHfhTKeBqA" target="_blank">📍 Murallas</a>
         </div>
       </div>
-      <div class="visit-row"><div class="visit-time">17:00 – 18:30</div><div class="visit-info"><div class="visit-name">Visita Plasencia (tarde)</div></div></div>
-      <div class="visit-row"><div class="visit-time">19:00</div><div class="visit-info"><div class="visit-name">Llegada Hotel <span class="fix-badge">AÑADIDO</span></div></div></div>
+      <!-- COMIDA 15:00–17:00 + extras inline -->
       <div class="restaurant-section">
-        <h4>🍴 Comida</h4>
-        <div class="restaurant-name">53 CarpeDiem</div>
-        <div class="restaurant-time">15:00 – 17:00</div>
+        <h4>15:00 – 17:00</h4>
+        <div class="restaurant-name">🍴 53 CarpeDiem</div>
         <div class="restaurant-addr">C. Vidrieras, 8, 10600 Plasencia · ⭐ 4.6</div>
         <div class="visit-detail">Horario domingo: 12:00–17:00 y 20:00–1:00 ✅</div>
         <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJj0CEMn4XPg0R_jmtUAU8pvU" target="_blank">📍 Abrir en Google Maps</a>
-      </div>
-      <!-- EXTRAS PLASENCIA -->
-      <div class="extras-wrap">
-        <button class="extras-toggle" onclick="toggleExtras(this)">🍦☕ Heladerías y cafés cerca del restaurante <span class="arrow">▼</span></button>
-        <div class="extras-content">
-          <div class="extras-inner">
-            <div class="extra-card">
-              <div class="extra-emoji">🍦</div>
-              <div class="extra-info">
-                <div class="extra-name">Gelateria Carte D'Or <span class="extra-rating">⭐ 5.0</span></div>
-                <div class="extra-addr">Plaza Mayor, 13 · A 2 min andando</div>
-                <div class="extra-detail">Domingo: 14:00–19:00 ✅ · Helados, waffles, gofres sin gluten</div>
-                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJ24zSNtYXPg0RkUPAX7RXXfI" target="_blank">📍 Google Maps</a>
-              </div>
-            </div>
-            <div class="extra-card">
-              <div class="extra-emoji">☕</div>
-              <div class="extra-info">
-                <div class="extra-name">Santagloria Coffee & Bakery <span class="extra-rating">⭐ 4.8 (574)</span></div>
-                <div class="extra-addr">Plaza Mayor, 7 · A 2 min andando</div>
-                <div class="extra-detail">Domingo: 9:00–21:30 ✅ · Café, "glorias", croissant de pistacho</div>
-                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJhWM-TqUXPg0R-zrjx_mk7JE" target="_blank">📍 Google Maps</a>
-              </div>
-            </div>
-            <div class="extra-card">
-              <div class="extra-emoji">🧁</div>
-              <div class="extra-info">
-                <div class="extra-name">La Pasión Dulce Repostería <span class="extra-rating">⭐ 4.9 (100)</span></div>
-                <div class="extra-addr">C. Diego de Carvajal · A 5 min andando</div>
-                <div class="extra-detail">Domingo: 9:30–14:00 ✅ · Repostería artesanal, café, dulces caseros</div>
-                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJ715ikX0XPg0RnTYdZiy372A" target="_blank">📍 Google Maps</a>
-              </div>
-            </div>
-          </div>
+        <div class="extras-wrap"><button class="extras-toggle" onclick="toggleExtras(this)">🍦☕🛒 Heladerías, cafés y tiendas cerca <span class="arrow">▼</span></button>
+          <div class="extras-content"><div class="extras-inner">
+            <div class="extra-card"><div class="extra-emoji">🍦</div><div class="extra-info"><div class="extra-name">Gelateria Carte D'Or <span class="extra-rating">⭐ 5.0</span></div><div class="extra-addr">Plaza Mayor, 13 · 2 min</div><div class="extra-detail">Dom: 14:00–19:00 ✅ · Helados, waffles, opciones sin gluten</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJ24zSNtYXPg0RkUPAX7RXXfI" target="_blank">📍 Maps</a></div></div>
+            <div class="extra-card"><div class="extra-emoji">☕</div><div class="extra-info"><div class="extra-name">Santagloria Coffee & Bakery <span class="extra-rating">⭐ 4.8 (574)</span></div><div class="extra-addr">Plaza Mayor, 7 · 2 min</div><div class="extra-detail">Dom: 9:00–21:30 ✅ · Café, "glorias", croissant de pistacho</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJhWM-TqUXPg0R-zrjx_mk7JE" target="_blank">📍 Maps</a></div></div>
+            <div class="extra-card"><div class="extra-emoji">🧁</div><div class="extra-info"><div class="extra-name">La Pasión Dulce Repostería <span class="extra-rating">⭐ 4.9 (100)</span></div><div class="extra-addr">C. Diego de Carvajal · 5 min</div><div class="extra-detail">Dom: 9:30–14:00 ✅ · Repostería artesanal, dulces caseros</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJ715ikX0XPg0RnTYdZiy372A" target="_blank">📍 Maps</a></div></div>
+            <div class="extra-card"><div class="extra-emoji">🏪</div><div class="extra-info"><div class="extra-name">Spar Express <span class="extra-rating">⭐ 4.3</span></div><div class="extra-addr">C. San Antón · Centro</div><div class="extra-detail">Dom: 10:00–14:30 ✅ · Pan, snacks, básicos</div><div class="extra-highlight">💡 Único súper abierto en domingo por la mañana en centro</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJuV2RdTgWPg0RM-lu5Zcu8Nw" target="_blank">📍 Maps</a></div></div>
+          </div></div>
         </div>
       </div>
-      <div class="extras-wrap">
-        <button class="extras-toggle" onclick="toggleExtras(this)">🛒 Tiendas de alimentación cerca <span class="arrow">▼</span></button>
-        <div class="extras-content">
-          <div class="extras-inner">
-            <div class="extra-card">
-              <div class="extra-emoji">🏪</div>
-              <div class="extra-info">
-                <div class="extra-name">Spar Express Plasencia <span class="extra-rating">⭐ 4.3</span></div>
-                <div class="extra-addr">C. San Antón esq. Alonso de Quirós · Centro</div>
-                <div class="extra-detail">Domingo: 10:00–14:30 ✅ · Pan recién hecho, snacks, básicos</div>
-                <div class="extra-highlight">💡 El único súper abierto en domingo en el centro</div>
-                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJuV2RdTgWPg0RM-lu5Zcu8Nw" target="_blank">📍 Google Maps</a>
-              </div>
-            </div>
-            <div class="extra-card">
-              <div class="extra-emoji">🏪</div>
-              <div class="extra-info">
-                <div class="extra-name">Supermercados Dia <span class="extra-rating">⭐ 4.4</span></div>
-                <div class="extra-addr">C. Sor Valentina Mirón, 35 · A 5 min del centro</div>
-                <div class="extra-detail">⚠️ CERRADO en domingo. Buen precio si pasáis el lunes</div>
-                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJ3QfLLTYWPg0RgFR6JdYnwZY" target="_blank">📍 Google Maps</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="visit-row"><div class="visit-time">17:00 – 18:30</div><div class="visit-info"><div class="visit-name">Visita Plasencia (tarde)</div></div></div>
+      <div class="visit-row"><div class="visit-time">19:00</div><div class="visit-info"><div class="visit-name">Llegada Hotel</div></div></div>
       <div class="hotel-section">
         <h4>🏨 Hotel</h4>
         <div class="restaurant-name">Hotel Boutique Los Álamos</div>
         <div class="restaurant-addr">Av. Martín Palomino, 6, 10600 Plasencia · ⭐ 4.6</div>
         <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJq3TFq0kXPg0RZ-gRfqlmQv8" target="_blank">📍 Abrir en Google Maps</a>
+        <div class="extras-wrap"><button class="extras-toggle hotel-shop" onclick="toggleExtras(this)">🛒 Tiendas cerca del hotel (<8 min) <span class="arrow">▼</span></button>
+          <div class="extras-content"><div class="extras-inner">
+            <div class="extra-card"><div class="extra-emoji">🏪</div><div class="extra-info"><div class="extra-name">Cash Fresh <span class="extra-rating">⭐ 4.5 (180)</span></div><div class="extra-addr">Av. Martín Palomino, 17 · 1 min (misma calle!)</div><div class="extra-detail">⚠️ CERRADO domingo. Lunes: 9:00–21:30 · Fruta, panadería, carnicería</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJ3VOCIDgXPg0REJlv25BHqEI" target="_blank">📍 Maps</a></div></div>
+            <div class="extra-card"><div class="extra-emoji">🏪</div><div class="extra-info"><div class="extra-name">Carrefour Express <span class="extra-rating">⭐ 4.1 (407)</span></div><div class="extra-addr">Av. la Salle, 24 · 7 min</div><div class="extra-detail">Dom: 9:00–15:00 ✅ · Abierto domingos y festivos</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJCQBxyDYWPg0R8ao-XpWf4Gw" target="_blank">📍 Maps</a></div></div>
+          </div></div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- ============ LUNES 30 - MARVAO ============ -->
+  <!-- ====== LUNES 30 - MARVÃO ====== -->
 
   <div class="day-card" data-date="2026-03-30">
     <div class="day-header marvao">
       <div><div class="day-title">Marvão + Castelo de Vide</div><div class="day-date">Lunes 30 de marzo</div></div>
-      <div class="temp-badge"><span class="icon">⛅</span><span class="temp-min">7°</span><span class="temp-sep">–</span><span class="temp-max">20°</span></div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <div class="temp-badge"><span class="icon">⛅</span><span class="temp-min">7°</span><span class="temp-sep">–</span><span class="temp-max">20°</span></div>
+        <button class="info-btn" onclick="event.stopPropagation();openInfo('marvao')">i</button>
+      </div>
     </div>
     <div class="day-body">
       <div class="visit-row"><div class="visit-time">8:30</div><div class="visit-info"><div class="visit-name">Salida</div></div></div>
@@ -219,514 +196,214 @@ h1 { font-size: 1.6rem; }
         <div class="visit-time">11:30 – 13:45</div>
         <div class="visit-info">
           <div class="visit-name">Visita Marvão</div>
-          <div class="visit-detail">Castillo: 9h-19h · Iglesia, muralla…: 9h-12:30 y 14h-17:30h <span class="fix-badge">HORARIO AÑADIDO</span></div>
+          <div class="visit-detail">Castillo: 9h-19h · Iglesia, muralla…: 9h-12:30 y 14h-17:30h</div>
           <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJK3SBSRO_Fw0R5Fr0sYhyv7s" target="_blank">📍 Castelo de Marvão</a>
         </div>
       </div>
-      <div class="visit-row">
-        <div class="visit-time">16:00 – 17:30</div>
-        <div class="visit-info">
-          <div class="visit-name">Castelo de Vide</div>
-          <div class="visit-detail">Barrio Judío / Caminar</div>
-          <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJA5bHIk2VFw0RNwbmAyh8nv8" target="_blank">📍 Castelo de Vide</a>
-        </div>
-      </div>
-      <div class="visit-row"><div class="visit-time">19:30</div><div class="visit-info"><div class="visit-name">Llegada Hotel Fátima <span class="fix-badge">AÑADIDO</span></div></div></div>
+      <!-- COMIDA 14:00–15:30 + extras inline -->
       <div class="restaurant-section">
-        <h4>🍴 Comida</h4>
-        <div class="restaurant-name">J.J. Videira</div>
-        <div class="restaurant-time">14:00 – 15:30</div>
+        <h4>14:00 – 15:30</h4>
+        <div class="restaurant-name">🍴 J.J. Videira</div>
         <div class="restaurant-addr">R. Nova 11, 7330-328 Marvão · ⭐ 4.6</div>
-        <div class="visit-detail" style="color:#cc6644;font-weight:600;">⚠️ LUNES: Solo abre 12:00–15:00. ¡Cierra a las 15:00! Llegad pronto.</div>
+        <div class="visit-detail" style="color:#cc6644;font-weight:600;">⚠️ LUNES: Solo abre 12:00–15:00. ¡Llegad pronto!</div>
         <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJ3cGtNhq_Fw0R-kRXYETu-O8" target="_blank">📍 Abrir en Google Maps</a>
-      </div>
-      <!-- EXTRAS MARVÃO -->
-      <div class="extras-wrap">
-        <button class="extras-toggle" onclick="toggleExtras(this)">🍦☕ Cafés y dulces cerca en Marvão <span class="arrow">▼</span></button>
-        <div class="extras-content">
-          <div class="extras-inner">
-            <div class="extra-card">
-              <div class="extra-emoji">🍪</div>
-              <div class="extra-info">
-                <div class="extra-name">Marvão Com Gosto <span class="extra-rating">⭐ 4.8</span></div>
-                <div class="extra-addr">R. de Cima 1, Marvão · A 1 min andando</div>
-                <div class="extra-detail">Galletas artesanales de avena y castaña, pastel de castanha premiado</div>
-                <div class="extra-highlight">💡 Se hacen al momento — se huele desde la calle</div>
-                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJed7v8xS_Fw0RMNd11yYedjw" target="_blank">📍 Google Maps</a>
-              </div>
-            </div>
-            <div class="extra-card">
-              <div class="extra-emoji">☕</div>
-              <div class="extra-info">
-                <div class="extra-name">O Castelo – Café Lounge <span class="extra-rating">⭐ 4.3 (595)</span></div>
-                <div class="extra-addr">R. Dr. Matos Magalhães 2, Marvão</div>
-                <div class="extra-detail">Lunes: 8:30–23:30 ✅ · Terraza con vistas, cafés, cerveza local Barona</div>
-                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJF4OWZhS_Fw0Ry7yb7EtBwAI" target="_blank">📍 Google Maps</a>
-              </div>
-            </div>
-            <div class="extra-card">
-              <div class="extra-emoji">🌿</div>
-              <div class="extra-info">
-                <div class="extra-name">Natural Bar <span class="extra-rating">⭐ 4.3 (194)</span></div>
-                <div class="extra-addr">Tv. do Chabouco, Marvão</div>
-                <div class="extra-detail">Productos locales, opciones vegetarianas, vino orgánico, buen ambiente</div>
-                <div class="extra-highlight">💡 Solo efectivo</div>
-                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJXdHUVRS_Fw0RyhaLvtThNv8" target="_blank">📍 Google Maps</a>
-              </div>
-            </div>
-          </div>
+        <div class="extras-wrap"><button class="extras-toggle" onclick="toggleExtras(this)">🍪☕🛒 Dulces, cafés y tiendas en Marvão <span class="arrow">▼</span></button>
+          <div class="extras-content"><div class="extras-inner">
+            <div class="extra-card"><div class="extra-emoji">🍪</div><div class="extra-info"><div class="extra-name">Marvão Com Gosto <span class="extra-rating">⭐ 4.8</span></div><div class="extra-addr">R. de Cima 1 · 1 min</div><div class="extra-detail">Galletas artesanales de avena/castaña, pastel de castanha premiado</div><div class="extra-highlight">💡 Se hacen al momento — se huele desde la calle</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJed7v8xS_Fw0RMNd11yYedjw" target="_blank">📍 Maps</a></div></div>
+            <div class="extra-card"><div class="extra-emoji">☕</div><div class="extra-info"><div class="extra-name">O Castelo – Café Lounge <span class="extra-rating">⭐ 4.3 (595)</span></div><div class="extra-addr">R. Dr. Matos Magalhães 2</div><div class="extra-detail">Lun: 8:30–23:30 ✅ · Terraza con vistas, cerveza local Barona</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJF4OWZhS_Fw0Ry7yb7EtBwAI" target="_blank">📍 Maps</a></div></div>
+            <div class="extra-card"><div class="extra-emoji">🏪</div><div class="extra-info"><div class="extra-name">Grocery Marvão <span class="extra-rating">⭐ 4.6 (65)</span></div><div class="extra-addr">R. do Espírito Santo 1 · 1 min</div><div class="extra-detail">Lun: 9:00–18:00 ✅ · Productos locales, vinos del Alentejo</div><div class="extra-highlight">💎 La mejor selección de vinos locales de la zona</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJ6SvVURS_Fw0R2riDu1u332Q" target="_blank">📍 Maps</a></div></div>
+            <div class="extra-card"><div class="extra-emoji">🏪</div><div class="extra-info"><div class="extra-name">Pingo Doce – Castelo de Vide <span class="extra-rating">⭐ 4.1 (1552)</span></div><div class="extra-addr">N246-1 Quinta Da Moutosa</div><div class="extra-detail">Lun: 8:00–21:00 ✅ · Súper grande, fruta, pan</div><div class="extra-highlight">💡 Parada ideal camino de Fátima</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJAZMGN1eVFw0RXkpw6pl56Xo" target="_blank">📍 Maps</a></div></div>
+          </div></div>
         </div>
       </div>
-      <div class="extras-wrap">
-        <button class="extras-toggle" onclick="toggleExtras(this)">🛒 Tiendas de alimentación cerca <span class="arrow">▼</span></button>
-        <div class="extras-content">
-          <div class="extras-inner">
-            <div class="extra-card">
-              <div class="extra-emoji">🏪</div>
-              <div class="extra-info">
-                <div class="extra-name">Grocery Marvão <span class="extra-rating">⭐ 4.6 (65)</span></div>
-                <div class="extra-addr">R. do Espírito Santo 1, Marvão</div>
-                <div class="extra-detail">Lunes: 9:00–18:00 ✅ · Productos locales, vinos del Alentejo, mercearia tradicional</div>
-                <div class="extra-highlight">💎 La mejor selección de vinos locales de la zona</div>
-                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJ6SvVURS_Fw0R2riDu1u332Q" target="_blank">📍 Google Maps</a>
-              </div>
-            </div>
-            <div class="extra-card">
-              <div class="extra-emoji">🏪</div>
-              <div class="extra-info">
-                <div class="extra-name">Pingo Doce – Castelo de Vide <span class="extra-rating">⭐ 4.1 (1552)</span></div>
-                <div class="extra-addr">N246-1 Quinta Da Moutosa, Castelo de Vide</div>
-                <div class="extra-detail">Lunes: 8:00–21:00 ✅ · Supermercado grande, fruta, pan fresco, buen precio</div>
-                <div class="extra-highlight">💡 Parada ideal camino de Fátima para hacer acopio</div>
-                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJAZMGN1eVFw0RXkpw6pl56Xo" target="_blank">📍 Google Maps</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="visit-row"><div class="visit-time">16:00 – 17:30</div><div class="visit-info"><div class="visit-name">Castelo de Vide</div><div class="visit-detail">Barrio Judío / Caminar</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJA5bHIk2VFw0RNwbmAyh8nv8" target="_blank">📍 Castelo de Vide</a></div></div>
+      <div class="visit-row"><div class="visit-time">19:30</div><div class="visit-info"><div class="visit-name">Llegada Hotel Fátima</div></div></div>
       <div class="hotel-section">
         <h4>🏨 Hotel</h4>
         <div class="restaurant-name">Serra d'Aire Hotel (Fátima)</div>
         <div class="restaurant-addr">R. Francisco Marto 83, 2495-448 Fátima · ⭐ 4.4</div>
         <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJcSNoXDCdGA0RwGTsqJGKYms" target="_blank">📍 Abrir en Google Maps</a>
+        <div class="extras-wrap"><button class="extras-toggle hotel-shop" onclick="toggleExtras(this)">🛒 Tiendas cerca del hotel (<8 min) <span class="arrow">▼</span></button>
+          <div class="extras-content"><div class="extras-inner">
+            <div class="extra-card"><div class="extra-emoji">🏪</div><div class="extra-info"><div class="extra-name">Supermercado Amanhecer <span class="extra-rating">⭐ 4.9 (40)</span></div><div class="extra-addr">R. 7 de Maio, Fátima · 3 min</div><div class="extra-detail">Lun: 9:00–22:00 ✅ · Frutería, productos locales, buen precio</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJ59b93-udGA0RAhxKjU-_t6k" target="_blank">📍 Maps</a></div></div>
+            <div class="extra-card"><div class="extra-emoji">🏪</div><div class="extra-info"><div class="extra-name">Minimercado Jobel <span class="extra-rating">⭐ 4.5 (82)</span></div><div class="extra-addr">R. 13 de Maio 6, Fátima · 4 min</div><div class="extra-detail">Lun: 8:30–19:30 ✅ · Mini pero completo</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJrc_umcWdGA0RhprbbNlDLTo" target="_blank">📍 Maps</a></div></div>
+          </div></div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- ============ MARTES 31 - FÁTIMA / LISBOA ============ -->
+  <!-- ====== MARTES 31 - FÁTIMA / LISBOA ====== -->
 
   <div class="day-card" data-date="2026-03-31">
     <div class="day-header lisboa">
       <div><div class="day-title">Fátima → Lisboa</div><div class="day-date">Martes 31 de marzo</div></div>
-      <div class="temp-badge"><span class="icon">☀️</span><span class="temp-min">14°</span><span class="temp-sep">–</span><span class="temp-max">24°</span></div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <div class="temp-badge"><span class="icon">☀️</span><span class="temp-min">14°</span><span class="temp-sep">–</span><span class="temp-max">24°</span></div>
+        <button class="info-btn" onclick="event.stopPropagation();openInfo('fatima')">i</button>
+      </div>
     </div>
     <div class="day-body">
       <div class="source-tag">📡 Meteored (Lisboa) · Soleado</div>
       <div class="visit-row"><div class="visit-time">9:00 – 11:00</div><div class="visit-info"><div class="visit-name">Visita Fátima</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJT4EGcyydGA0R5BZe67Ow8Tk" target="_blank">📍 Santuario de Fátima</a></div></div>
       <div class="visit-row"><div class="visit-time">11:30</div><div class="visit-info"><div class="visit-name">Salida de Fátima</div></div></div>
       <div class="visit-row"><div class="visit-time">13:30</div><div class="visit-info"><div class="visit-name">Llegada Hotel Lisboa (sólo dejar coche)</div></div></div>
-      <div class="visit-row">
-        <div class="visit-time">16:00 – 18:30</div>
-        <div class="visit-info">
-          <div class="visit-name">Castillo de San Jorge – COMPRADO</div>
-          <div class="visit-detail">LisboaCard: 29€ / +65: 14€ / Kid: 0 (9h-21h)</div>
-          <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJm8MOtHc0GQ0R1zPkmUFwwLQ" target="_blank">📍 Castillo de San Jorge</a>
-        </div>
-      </div>
-      <div class="visit-row"><div class="visit-time">18:30 – 20:30</div><div class="visit-info"><div class="visit-name">Barrio Alfama / Baixa</div></div></div>
-      <div class="visit-row"><div class="visit-time">21:00</div><div class="visit-info"><div class="visit-name">Llegada Hotel <span class="fix-badge">AÑADIDO</span></div></div></div>
+      <!-- COMIDA 14:30–16:00 + extras inline -->
       <div class="restaurant-section">
-        <h4>🍴 Comida</h4>
-        <div class="restaurant-name">Sta Rita</div>
-        <div class="restaurant-time">14:30 – 16:00</div>
+        <h4>14:30 – 16:00</h4>
+        <div class="restaurant-name">🍴 Sta Rita</div>
         <div class="restaurant-addr">R. de São Mamede 24, 1100-535 Lisboa · ⭐ 4.7</div>
         <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJl83pK3g0GQ0RxvsIGuchlTc" target="_blank">📍 Abrir en Google Maps</a>
-      </div>
-      <!-- EXTRAS ALFAMA -->
-      <div class="extras-wrap">
-        <button class="extras-toggle" onclick="toggleExtras(this)">🍦☕ Heladerías y cafés en Alfama <span class="arrow">▼</span></button>
-        <div class="extras-content">
-          <div class="extras-inner">
-            <div class="extra-card">
-              <div class="extra-emoji">🍦</div>
-              <div class="extra-info">
-                <div class="extra-name">Gelataria São Miguel <span class="extra-rating">⭐ 4.9 (672)</span></div>
-                <div class="extra-addr">Largo de São Miguel 3, Alfama</div>
-                <div class="extra-detail">Martes: 13:00–21:00 ✅ · Gelato italiano artesanal. Mango, pistacho, cookies…</div>
-                <div class="extra-highlight">💎 Considerada joya escondida de Alfama</div>
-                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJI6DAZGw1GQ0RM_vKVnZGJ-I" target="_blank">📍 Google Maps</a>
-              </div>
-            </div>
-            <div class="extra-card">
-              <div class="extra-emoji">🧁</div>
-              <div class="extra-info">
-                <div class="extra-name">Alfama Doce <span class="extra-rating">⭐ 4.9 (1968)</span></div>
-                <div class="extra-addr">R. da Regueira 39, Alfama</div>
-                <div class="extra-detail">Martes: 8:00–18:30 ✅ · Pastéis de nata caseros, pastel de alfama, dulces tradicionales</div>
-                <div class="extra-highlight">💡 Solo efectivo</div>
-                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJe78DzXU0GQ0RTbMYUmecROo" target="_blank">📍 Google Maps</a>
-              </div>
-            </div>
-            <div class="extra-card">
-              <div class="extra-emoji">🍦</div>
-              <div class="extra-info">
-                <div class="extra-name">Gelataria Portuguesa <span class="extra-rating">⭐ 4.6 (270)</span></div>
-                <div class="extra-addr">R. de Santa Cruz do Castelo 15 · Junto al Castillo</div>
-                <div class="extra-detail">Martes: 11:30–18:30 ✅ · Helado y zumos frescos. Parada ideal saliendo del castillo</div>
-                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJ305DwXc0GQ0RlbdFgTIM19Q" target="_blank">📍 Google Maps</a>
-              </div>
-            </div>
-          </div>
+        <div class="extras-wrap"><button class="extras-toggle" onclick="toggleExtras(this)">🍦☕🛒 Heladerías, cafés y tiendas en Alfama <span class="arrow">▼</span></button>
+          <div class="extras-content"><div class="extras-inner">
+            <div class="extra-card"><div class="extra-emoji">🍦</div><div class="extra-info"><div class="extra-name">Gelataria São Miguel <span class="extra-rating">⭐ 4.9 (672)</span></div><div class="extra-addr">Largo de São Miguel 3</div><div class="extra-detail">Mar: 13:00–21:00 ✅ · Gelato artesanal. Mango, pistacho, cookies</div><div class="extra-highlight">💎 Joya escondida de Alfama</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJI6DAZGw1GQ0RM_vKVnZGJ-I" target="_blank">📍 Maps</a></div></div>
+            <div class="extra-card"><div class="extra-emoji">🧁</div><div class="extra-info"><div class="extra-name">Alfama Doce <span class="extra-rating">⭐ 4.9 (1968)</span></div><div class="extra-addr">R. da Regueira 39</div><div class="extra-detail">Mar: 8:00–18:30 ✅ · Pastéis de nata caseros, pastel de alfama</div><div class="extra-highlight">💡 Solo efectivo</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJe78DzXU0GQ0RTbMYUmecROo" target="_blank">📍 Maps</a></div></div>
+            <div class="extra-card"><div class="extra-emoji">🍦</div><div class="extra-info"><div class="extra-name">Gelataria Portuguesa <span class="extra-rating">⭐ 4.6 (270)</span></div><div class="extra-addr">R. Sta Cruz do Castelo 15 · Junto al Castillo</div><div class="extra-detail">Mar: 11:30–18:30 ✅ · Helado y zumos</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJ305DwXc0GQ0RlbdFgTIM19Q" target="_blank">📍 Maps</a></div></div>
+            <div class="extra-card"><div class="extra-emoji">🏪</div><div class="extra-info"><div class="extra-name">Mercado da Sé <span class="extra-rating">⭐ 4.1</span></div><div class="extra-addr">R. de São João da Praça 120</div><div class="extra-detail">Mar: 9:00–0:00 ✅ · Abierto hasta medianoche, básicos, bebidas</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJi07pC-Y1GQ0RQ2ry0kQHKrs" target="_blank">📍 Maps</a></div></div>
+          </div></div>
         </div>
       </div>
-      <div class="extras-wrap">
-        <button class="extras-toggle" onclick="toggleExtras(this)">🛒 Tiendas de alimentación (Fátima + Alfama) <span class="arrow">▼</span></button>
-        <div class="extras-content">
-          <div class="extras-inner">
-            <div class="extra-card">
-              <div class="extra-emoji">🏪</div>
-              <div class="extra-info">
-                <div class="extra-name">Minimercado Jobel – Fátima <span class="extra-rating">⭐ 4.5 (82)</span></div>
-                <div class="extra-addr">R. 13 de Maio 6, Fátima · Junto al Santuario</div>
-                <div class="extra-detail">Martes: 8:30–19:30 ✅ · Mini pero completo, productos locales</div>
-                <div class="extra-highlight">💡 Ideal para comprar snacks antes de salir hacia Lisboa</div>
-                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJrc_umcWdGA0RhprbbNlDLTo" target="_blank">📍 Google Maps</a>
-              </div>
-            </div>
-            <div class="extra-card">
-              <div class="extra-emoji">🏪</div>
-              <div class="extra-info">
-                <div class="extra-name">Mercado da Sé – Alfama <span class="extra-rating">⭐ 4.1</span></div>
-                <div class="extra-addr">R. de São João da Praça 120, Alfama</div>
-                <div class="extra-detail">Martes: 9:00–0:00 ✅ · Abierto hasta medianoche, básicos, bebidas frías</div>
-                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJi07pC-Y1GQ0RQ2ry0kQHKrs" target="_blank">📍 Google Maps</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="visit-row"><div class="visit-time">16:00 – 18:30</div><div class="visit-info"><div class="visit-name">Castillo de San Jorge – COMPRADO</div><div class="visit-detail">LisboaCard: 29€ / +65: 14€ / Kid: 0 (9h-21h)</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJm8MOtHc0GQ0R1zPkmUFwwLQ" target="_blank">📍 Castillo de San Jorge</a></div></div>
+      <div class="visit-row"><div class="visit-time">18:30 – 20:30</div><div class="visit-info"><div class="visit-name">Barrio Alfama / Baixa</div></div></div>
+      <div class="visit-row"><div class="visit-time">21:00</div><div class="visit-info"><div class="visit-name">Llegada Hotel</div></div></div>
       <div class="hotel-section">
-        <h4>🏨 Hotel</h4>
+        <h4>🏨 Hotel (mar–jue)</h4>
         <div class="restaurant-name">Comtesse Lisbonne GuestHouse</div>
         <div class="restaurant-addr">R. Direita de Palma 15, 1600-056 Lisboa · ⭐ 4.5</div>
         <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJdQdNVm4zGQ0RW9pw76rVYE4" target="_blank">📍 Abrir en Google Maps</a>
+        <div class="extras-wrap"><button class="extras-toggle hotel-shop" onclick="toggleExtras(this)">🛒 Tiendas cerca del hotel (<8 min) <span class="arrow">▼</span></button>
+          <div class="extras-content"><div class="extras-inner">
+            <div class="extra-card"><div class="extra-emoji">🏪</div><div class="extra-info"><div class="extra-name">My Auchan – R. Beneficência <span class="extra-rating">⭐ 4.1 (208)</span></div><div class="extra-addr">R. da Beneficência 119B · 3 min</div><div class="extra-detail">Todos los días: 8:30–21:00 ✅ · Mini súper con panadería, básicos</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJv9m2m1ozGQ0Rcjb437Syatc" target="_blank">📍 Maps</a></div></div>
+            <div class="extra-card"><div class="extra-emoji">🏪</div><div class="extra-info"><div class="extra-name">Auchan Supermercado <span class="extra-rating">⭐ 3.9 (660)</span></div><div class="extra-addr">R. Cardeal Mercier · 4 min</div><div class="extra-detail">Todos los días: 8:00–21:00 ✅ · Más grande, más variedad</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJnYghDhAzGQ0RKNITN0WWkY8" target="_blank">📍 Maps</a></div></div>
+            <div class="extra-card"><div class="extra-emoji">🏪</div><div class="extra-info"><div class="extra-name">Pingo Doce – Av. Madame Curie <span class="extra-rating">⭐ 4.3 (110)</span></div><div class="extra-addr">Av. Madame Curie 11A · 8 min</div><div class="extra-detail">Todos los días: 8:00–21:00 ✅ · Completo, zona restaurante, microondas</div><div class="extra-highlight">💎 El más completo de la zona, con zona para comer</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJAanYDQAzGQ0RxrTTsoLTZUU" target="_blank">📍 Maps</a></div></div>
+          </div></div>
+        </div>
       </div>
     </div>
   </div>
 
-  <!-- ============ MIÉRCOLES 1 - LISBOA ============ -->
+  <!-- ====== MIÉRCOLES 1 - LISBOA ====== -->
 
   <div class="day-card" data-date="2026-04-01">
     <div class="day-header lisboa">
       <div><div class="day-title">Lisboa <span class="changes-badge">ACTUALIZADO</span></div><div class="day-date">Miércoles 1 de abril</div></div>
-      <div class="temp-badge"><span class="icon">☀️</span><span class="temp-min">14°</span><span class="temp-sep">–</span><span class="temp-max">24°</span></div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <div class="temp-badge"><span class="icon">☀️</span><span class="temp-min">14°</span><span class="temp-sep">–</span><span class="temp-max">24°</span></div>
+        <button class="info-btn" onclick="event.stopPropagation();openInfo('lisboa')">i</button>
+      </div>
     </div>
     <div class="day-body">
       <div class="source-tag">📡 Meteored (Lisboa) · Soleado</div>
-      <div class="visit-row"><div class="visit-time">8:15</div><div class="visit-info"><div class="visit-name">Salida Hotel → Parking "Descobridores"</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJ2QH6NkLLHg0RIwSI26W6Fv4" target="_blank">📍 Parking Descobridores</a></div></div>
-      <div class="visit-row">
-        <div class="visit-time">9:30 – 11:30</div>
-        <div class="visit-info">
-          <div class="visit-name">Monasterio San Jerónimo – COMPRADO</div>
-          <div class="visit-detail">LisboaCard: 29€ / +65: 9€ / Kid: 0 (9:30h-17:30h)</div>
-          <div class="note">ℹ️ El Excel indica "9:30h-5:30h" — interpretado como 17:30h.</div>
-          <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJS5zCw0LLHg0R7euWjjRddYc" target="_blank">📍 Praça do Império</a>
-        </div>
-      </div>
-      <div class="visit-row">
-        <div class="visit-time">11:30 – 13:00</div>
-        <div class="visit-info">
-          <div class="visit-name">Torre Belém / Monumento / Pastel de Belém</div>
-          <div class="visit-detail" style="color:#cc6644;font-weight:600;">🚫 TORRE BELÉM CERRADA por obras hasta verano 2026. Solo por fuera.</div>
-          <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJS5zCw0LLHg0RP1FSz63cAjA" target="_blank">📍 Torre de Belém</a><br>
-          <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJW3H9LkXLHg0RZZZttMb27_8" target="_blank">📍 Pastéis de Belém</a>
+      <div class="visit-row"><div class="visit-time">8:15</div><div class="visit-info"><div class="visit-name">Salida Hotel → Parking "Descobridores"</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJ2QH6NkLLHg0RIwSI26W6Fv4" target="_blank">📍 Parking</a></div></div>
+      <div class="visit-row"><div class="visit-time">9:30 – 11:30</div><div class="visit-info"><div class="visit-name">Monasterio San Jerónimo – COMPRADO</div><div class="visit-detail">LisboaCard: 29€ / +65: 9€ / Kid: 0 (9:30h-17:30h)</div><div class="note">ℹ️ El Excel indica "5:30h" — interpretado como 17:30h.</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJS5zCw0LLHg0R7euWjjRddYc" target="_blank">📍 Praça do Império</a></div></div>
+      <div class="visit-row"><div class="visit-time">11:30 – 13:00</div><div class="visit-info"><div class="visit-name">Torre Belém / Monumento / Pastel de Belém</div><div class="visit-detail" style="color:#cc6644;font-weight:600;">🚫 TORRE BELÉM CERRADA por obras hasta verano 2026.</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJW3H9LkXLHg0RZZZttMb27_8" target="_blank">📍 Pastéis de Belém</a></div></div>
+      <!-- COMIDA 13:00–15:00 + extras inline -->
+      <div class="restaurant-section">
+        <h4>13:00 – 15:00</h4>
+        <div class="restaurant-name">🍴 Pérola de Belém <span class="changes-badge">NUEVO</span></div>
+        <div class="restaurant-addr">R. Damião de Góis 12A, 1400-119 Lisboa · ⭐ 4.6</div>
+        <div class="note">Horario miércoles: 7:00–23:00 ✅</div>
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJjS67CHvLHg0RqWtzd9A_NJA" target="_blank">📍 Abrir en Google Maps</a>
+        <div class="extras-wrap"><button class="extras-toggle" onclick="toggleExtras(this)">🍦☕🛒 Heladerías, cafés y tiendas en Belém <span class="arrow">▼</span></button>
+          <div class="extras-content"><div class="extras-inner">
+            <div class="extra-card"><div class="extra-emoji">🍦</div><div class="extra-info"><div class="extra-name">Santini Belém <span class="extra-rating">⭐ 4.4 (1495)</span></div><div class="extra-addr">Praça Afonso de Albuquerque (bajo el puente)</div><div class="extra-detail">Mié: 12:00–22:00 ✅ · Top 100 mundial. Coco, pistacho, maracuyá</div><div class="extra-highlight">💎 Escondida bajo el puente — merece buscarla</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJL6sAuk_LHg0Rd6aD6tWHjrc" target="_blank">📍 Maps</a></div></div>
+            <div class="extra-card"><div class="extra-emoji">🍦</div><div class="extra-info"><div class="extra-name">Gelato Davvero CCB <span class="extra-rating">⭐ 4.5 (566)</span></div><div class="extra-addr">Praça do Império 7, junto Monasterio</div><div class="extra-detail">Mié: 12:00–20:00 ✅ · 3 sabores por 2,50€. Tiramisú top</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJaZeJEkPLHg0RAmi_C2YXlGo" target="_blank">📍 Maps</a></div></div>
+            <div class="extra-card"><div class="extra-emoji">🥧</div><div class="extra-info"><div class="extra-name">Manteigaria <span class="extra-rating">⭐ 4.7 (1161)</span></div><div class="extra-addr">R. de Belém 31 · 1 min de Pastéis</div><div class="extra-detail">Mié: 8:00–21:00 ✅ · Alternativa sin colas, misma calidad</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJL2nR4eLLHg0RCyNvMjjDZwI" target="_blank">📍 Maps</a></div></div>
+            <div class="extra-card"><div class="extra-emoji">🏪</div><div class="extra-info"><div class="extra-name">Mercearia Belém <span class="extra-rating">⭐ 3.9 (89)</span></div><div class="extra-addr">R. de Belém 25 · Calle principal</div><div class="extra-detail">Mié: 9:00–21:00 ✅ · Vinos, snacks, bebidas</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJtT8R3JbLHg0R7M7HgWowQOY" target="_blank">📍 Maps</a></div></div>
+            <div class="extra-card"><div class="extra-emoji">🏪</div><div class="extra-info"><div class="extra-name">My Auchan – Restelo <span class="extra-rating">⭐ 3.9 (575)</span></div><div class="extra-addr">R. das Pedreiras 20 · 10 min del Monasterio</div><div class="extra-detail">Mié: 8:00–21:00 ✅ · Súper completo, mejor precio</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJT9cP-lvLHg0RAA1-8vZFkmc" target="_blank">📍 Maps</a></div></div>
+          </div></div>
         </div>
       </div>
       <div class="visit-row"><div class="visit-time">15:00 – 15:30</div><div class="visit-info"><div class="visit-name">Hotel (sólo dejar coche)</div></div></div>
       <div class="visit-row"><div class="visit-time">15:30 – 16:00</div><div class="visit-info"><div class="visit-name">Llegar al centro en metro</div></div></div>
       <div class="visit-row"><div class="visit-time">16:00 – 20:30</div><div class="visit-info"><div class="visit-name">Alta / Chiado</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJ-6uzAoA0GQ0R8dBgojsq_ro" target="_blank">📍 Bairro Alto</a></div></div>
-      <div class="visit-row"><div class="visit-time">21:00</div><div class="visit-info"><div class="visit-name">Llegada Hotel <span class="fix-badge">AÑADIDO</span></div></div></div>
-      <div class="restaurant-section">
-        <h4>🍴 Comida <span class="changes-badge">NUEVO</span></h4>
-        <div class="restaurant-name">Pérola de Belém</div>
-        <div class="restaurant-time">13:00 – 15:00</div>
-        <div class="restaurant-addr">R. Damião de Góis 12A, 1400-119 Lisboa · ⭐ 4.6</div>
-        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJjS67CHvLHg0RqWtzd9A_NJA" target="_blank">📍 Abrir en Google Maps</a>
-        <div class="note">Horario miércoles: 7:00–23:00 ✅</div>
-      </div>
-      <!-- EXTRAS BELÉM -->
-      <div class="extras-wrap">
-        <button class="extras-toggle" onclick="toggleExtras(this)">🍦☕ Heladerías y cafés en zona Belém <span class="arrow">▼</span></button>
-        <div class="extras-content">
-          <div class="extras-inner">
-            <div class="extra-card">
-              <div class="extra-emoji">🍦</div>
-              <div class="extra-info">
-                <div class="extra-name">Santini Belém <span class="extra-rating">⭐ 4.4 (1495)</span></div>
-                <div class="extra-addr">Praça Afonso de Albuquerque (junto Museo Coches)</div>
-                <div class="extra-detail">Miércoles: 12:00–22:00 ✅ · Top 100 heladerías del mundo. Coco, pistacho, maracuyá</div>
-                <div class="extra-highlight">💎 Ligeramente escondida bajo el puente — merece la pena buscarla</div>
-                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJL6sAuk_LHg0Rd6aD6tWHjrc" target="_blank">📍 Google Maps</a>
-              </div>
-            </div>
-            <div class="extra-card">
-              <div class="extra-emoji">🍦</div>
-              <div class="extra-info">
-                <div class="extra-name">Gelato Davvero CCB <span class="extra-rating">⭐ 4.5 (566)</span></div>
-                <div class="extra-addr">Praça do Império 7, junto al Monasterio</div>
-                <div class="extra-detail">Miércoles: 12:00–20:00 ✅ · 3 sabores por 2,50€. Tiramisú espectacular</div>
-                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJaZeJEkPLHg0RAmi_C2YXlGo" target="_blank">📍 Google Maps</a>
-              </div>
-            </div>
-            <div class="extra-card">
-              <div class="extra-emoji">🥧</div>
-              <div class="extra-info">
-                <div class="extra-name">Manteigaria – Fábrica de Pastéis de Nata <span class="extra-rating">⭐ 4.7 (1161)</span></div>
-                <div class="extra-addr">R. de Belém 31 · A 1 min de Pastéis de Belém</div>
-                <div class="extra-detail">Miércoles: 8:00–21:00 ✅ · Alternativa sin colas a Pastéis de Belém, misma calidad</div>
-                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJL2nR4eLLHg0RCyNvMjjDZwI" target="_blank">📍 Google Maps</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="extras-wrap">
-        <button class="extras-toggle" onclick="toggleExtras(this)">🛒 Tiendas de alimentación en zona Belém <span class="arrow">▼</span></button>
-        <div class="extras-content">
-          <div class="extras-inner">
-            <div class="extra-card">
-              <div class="extra-emoji">🏪</div>
-              <div class="extra-info">
-                <div class="extra-name">Mercearia e Bebidas Belém <span class="extra-rating">⭐ 3.9 (89)</span></div>
-                <div class="extra-addr">R. de Belém 25 · En la calle principal de Belém</div>
-                <div class="extra-detail">Miércoles: 9:00–21:00 ✅ · Vinos portugueses, snacks, bebidas frías, básicos</div>
-                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJtT8R3JbLHg0R7M7HgWowQOY" target="_blank">📍 Google Maps</a>
-              </div>
-            </div>
-            <div class="extra-card">
-              <div class="extra-emoji">🏪</div>
-              <div class="extra-info">
-                <div class="extra-name">My Auchan – Restelo <span class="extra-rating">⭐ 3.9 (575)</span></div>
-                <div class="extra-addr">R. das Pedreiras 20, Restelo · A 10 min del Monasterio</div>
-                <div class="extra-detail">Miércoles: 8:00–21:00 ✅ · Supermercado completo, panadería, vinos</div>
-                <div class="extra-highlight">💡 Más variedad y mejor precio que las tiendas turísticas de Belém</div>
-                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJT9cP-lvLHg0RAA1-8vZFkmc" target="_blank">📍 Google Maps</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="visit-row"><div class="visit-time">21:00</div><div class="visit-info"><div class="visit-name">Llegada Hotel</div></div></div>
       <div class="hotel-section">
         <h4>🏨 Hotel</h4>
         <div class="restaurant-name">Comtesse Lisbonne GuestHouse</div>
         <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJdQdNVm4zGQ0RW9pw76rVYE4" target="_blank">📍 R. Direita de Palma 15, Lisboa</a>
+        <div class="note">ℹ️ Ver tiendas cerca del hotel en el día anterior (martes)</div>
       </div>
     </div>
   </div>
 
-  <!-- ============ JUEVES 2 - SINTRA ============ -->
+  <!-- ====== JUEVES 2 - SINTRA ====== -->
 
   <div class="day-card" data-date="2026-04-02">
     <div class="day-header sintra">
       <div><div class="day-title">Sintra <span class="fix-badge">CORREGIDO</span></div><div class="day-date">Jueves 2 de abril</div></div>
-      <div class="temp-badge"><span class="icon">⛅</span><span class="temp-min">12°</span><span class="temp-sep">–</span><span class="temp-max">19°</span></div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <div class="temp-badge"><span class="icon">⛅</span><span class="temp-min">12°</span><span class="temp-sep">–</span><span class="temp-max">19°</span></div>
+        <button class="info-btn" onclick="event.stopPropagation();openInfo('sintra')">i</button>
+      </div>
     </div>
     <div class="day-body">
       <div class="source-tag">📡 Meteored (Sintra) · Nubes y claros · Viento: 21–42 km/h</div>
       <div class="visit-row"><div class="visit-time">8:15</div><div class="visit-info"><div class="visit-name">Salida Hotel → Parking "P3 Car Park"</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJb8CLnjTbHg0R0LD3SdykamA" target="_blank">📍 P3 Car Park</a></div></div>
-      <div class="visit-row">
-        <div class="visit-time">10:00 – 12:00</div>
-        <div class="visit-info">
-          <div class="visit-name">Palacio da Pena – COMPRADO</div>
-          <div class="visit-detail">Horario: 9:30–18:30 ✅</div>
-          <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJZ1qc8r_aHg0RWDtny30aJ3c" target="_blank">📍 Palacio da Pena</a>
-        </div>
-      </div>
-      <div class="visit-row">
-        <div class="visit-time">16:00 – 18:30</div>
-        <div class="visit-info">
-          <div class="visit-name">Quinta da Regaleira – COMPRADO <span class="changes-badge">YA COMPRADO</span></div>
-          <div class="visit-detail" style="color:#cc6644;font-weight:600;">⚠️ Cierra a las 17:30. Os echarán a las 17:30.</div>
-          <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJe9TGZMLaHg0RI2WK1BbF4b8" target="_blank">📍 Quinta da Regaleira</a>
-        </div>
-      </div>
-      <div class="visit-row"><div class="visit-time">20:00</div><div class="visit-info"><div class="visit-name">Llegada Hotel Lisboa <span class="fix-badge">AÑADIDO</span></div></div></div>
+      <div class="visit-row"><div class="visit-time">10:00 – 12:00</div><div class="visit-info"><div class="visit-name">Palacio da Pena – COMPRADO</div><div class="visit-detail">Horario: 9:30–18:30 ✅</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJZ1qc8r_aHg0RWDtny30aJ3c" target="_blank">📍 Palacio da Pena</a></div></div>
+      <!-- COMIDA 14:00–15:30 + extras inline -->
       <div class="restaurant-section">
-        <h4>🍴 Comida <span class="fix-badge">CORREGIDO</span></h4>
-        <div class="restaurant-name">Datto da Claudio Cóhelo</div>
-        <div class="restaurant-time">14:00 – 15:30</div>
-        <div class="note">ℹ️ Nombre tal como aparece en el Excel. Verificar dirección antes de ir.</div>
-      </div>
-      <!-- EXTRAS SINTRA -->
-      <div class="extras-wrap">
-        <button class="extras-toggle" onclick="toggleExtras(this)">🍦☕ Heladerías y pastelerías en Sintra <span class="arrow">▼</span></button>
-        <div class="extras-content">
-          <div class="extras-inner">
-            <div class="extra-card">
-              <div class="extra-emoji">🥐</div>
-              <div class="extra-info">
-                <div class="extra-name">Casa Piriquita <span class="extra-rating">⭐ 4.4 (6779)</span></div>
-                <div class="extra-addr">R. Padarias 1, Sintra centro</div>
-                <div class="extra-detail">Jueves: 8:30–19:30 ✅ · Travesseiros, queijadas, pastel de nata. La pastelería icónica de Sintra</div>
-                <div class="extra-highlight">💎 Id antes de las 12:00 para evitar masificación post-Pena</div>
-                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJm0Z7GcDaHg0R4p03v1R9HKo" target="_blank">📍 Google Maps</a>
-              </div>
-            </div>
-            <div class="extra-card">
-              <div class="extra-emoji">🥧</div>
-              <div class="extra-info">
-                <div class="extra-name">Fábrica da Nata <span class="extra-rating">⭐ 4.7 (739)</span></div>
-                <div class="extra-addr">Praça da República 6, Sintra centro</div>
-                <div class="extra-detail">Jueves: 9:00–19:00 ✅ · Pastéis de nata recién hechos, ves cómo los preparan</div>
-                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJX57j_QDbHg0R7n4bg0Fv4-4" target="_blank">📍 Google Maps</a>
-              </div>
-            </div>
-            <div class="extra-card">
-              <div class="extra-emoji">🍦</div>
-              <div class="extra-info">
-                <div class="extra-name">Gelato Della Linea <span class="extra-rating">⭐ 4.8 (252)</span></div>
-                <div class="extra-addr">Av. Heliodoro Salgado 19, Sintra</div>
-                <div class="extra-detail">Jueves: 11:00–19:00 ✅ · Gelato artesanal. Sabor estrella: "queijada" (helado de queijada de Sintra)</div>
-                <div class="extra-highlight">💎 Posiblemente el mejor gelato de Sintra</div>
-                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJ4a3BAxrbHg0R6QwyDpBhIBU" target="_blank">📍 Google Maps</a>
-              </div>
-            </div>
-          </div>
+        <h4>14:00 – 15:30</h4>
+        <div class="restaurant-name">🍴 Datto da Claudio Cóhelo <span class="fix-badge">CORREGIDO</span></div>
+        <div class="note">ℹ️ Nombre tal como aparece en el Excel. Verificar dirección.</div>
+        <div class="extras-wrap"><button class="extras-toggle" onclick="toggleExtras(this)">🥐🍦🛒 Pastelerías, heladerías y tiendas en Sintra <span class="arrow">▼</span></button>
+          <div class="extras-content"><div class="extras-inner">
+            <div class="extra-card"><div class="extra-emoji">🥐</div><div class="extra-info"><div class="extra-name">Casa Piriquita <span class="extra-rating">⭐ 4.4 (6779)</span></div><div class="extra-addr">R. Padarias 1, Sintra centro</div><div class="extra-detail">Jue: 8:30–19:30 ✅ · Travesseiros, queijadas. LA pastelería icónica</div><div class="extra-highlight">💎 Id antes de las 12:00 para evitar masificación</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJm0Z7GcDaHg0R4p03v1R9HKo" target="_blank">📍 Maps</a></div></div>
+            <div class="extra-card"><div class="extra-emoji">🥧</div><div class="extra-info"><div class="extra-name">Fábrica da Nata <span class="extra-rating">⭐ 4.7 (739)</span></div><div class="extra-addr">Praça da República 6</div><div class="extra-detail">Jue: 9:00–19:00 ✅ · Pastéis de nata recién hechos, ves cómo los preparan</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJX57j_QDbHg0R7n4bg0Fv4-4" target="_blank">📍 Maps</a></div></div>
+            <div class="extra-card"><div class="extra-emoji">🍦</div><div class="extra-info"><div class="extra-name">Gelato Della Linea <span class="extra-rating">⭐ 4.8 (252)</span></div><div class="extra-addr">Av. Heliodoro Salgado 19</div><div class="extra-detail">Jue: 11:00–19:00 ✅ · Sabor estrella: helado de queijada de Sintra</div><div class="extra-highlight">💎 Posiblemente el mejor gelato de Sintra</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJ4a3BAxrbHg0R6QwyDpBhIBU" target="_blank">📍 Maps</a></div></div>
+            <div class="extra-card"><div class="extra-emoji">🏪</div><div class="extra-info"><div class="extra-name">Mercado Municipal de Sintra <span class="extra-rating">⭐ 4.4</span></div><div class="extra-addr">R. Paço · 50m del Palacio Nacional</div><div class="extra-detail">Jue: 7:00–22:00 ✅ · Mercado gastro renovado, café, fruta</div><div class="extra-highlight">💎 Ambiente local con vistas</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJnVxdt-raHg0Rc4PdSJVGfsc" target="_blank">📍 Maps</a></div></div>
+            <div class="extra-card"><div class="extra-emoji">🏪</div><div class="extra-info"><div class="extra-name">My Auchan – Sintra <span class="extra-rating">⭐ 3.8 (258)</span></div><div class="extra-addr">R. Ulysses Alves 9 · Junto estación</div><div class="extra-detail">Jue: 8:00–21:00 ✅ · Snacks, bebidas, básicos</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJX981MpfaHg0RuijH2qZdSEU" target="_blank">📍 Maps</a></div></div>
+          </div></div>
         </div>
       </div>
-      <div class="extras-wrap">
-        <button class="extras-toggle" onclick="toggleExtras(this)">🛒 Tiendas de alimentación en Sintra <span class="arrow">▼</span></button>
-        <div class="extras-content">
-          <div class="extras-inner">
-            <div class="extra-card">
-              <div class="extra-emoji">🏪</div>
-              <div class="extra-info">
-                <div class="extra-name">My Auchan – Sintra <span class="extra-rating">⭐ 3.8 (258)</span></div>
-                <div class="extra-addr">R. Ulysses Alves 9, Sintra · Cerca de la estación</div>
-                <div class="extra-detail">Jueves: 8:00–21:00 ✅ · Mini súper con snacks, bebidas, básicos</div>
-                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJX981MpfaHg0RuijH2qZdSEU" target="_blank">📍 Google Maps</a>
-              </div>
-            </div>
-            <div class="extra-card">
-              <div class="extra-emoji">🏪</div>
-              <div class="extra-info">
-                <div class="extra-name">Mercado Municipal de Sintra <span class="extra-rating">⭐ 4.4</span></div>
-                <div class="extra-addr">R. Paço, Sintra · A 50m del Palacio Nacional</div>
-                <div class="extra-detail">Jueves: 7:00–22:00 ✅ · Mercado gastro con puestos de comida, café, fruta fresca</div>
-                <div class="extra-highlight">💎 Mercado renovado con ambiente local y vistas</div>
-                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJnVxdt-raHg0Rc4PdSJVGfsc" target="_blank">📍 Google Maps</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="visit-row"><div class="visit-time">16:00 – 18:30</div><div class="visit-info"><div class="visit-name">Quinta da Regaleira – COMPRADO <span class="changes-badge">YA COMPRADO</span></div><div class="visit-detail" style="color:#cc6644;font-weight:600;">⚠️ Cierra a las 17:30. Os echarán a las 17:30.</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJe9TGZMLaHg0RI2WK1BbF4b8" target="_blank">📍 Quinta da Regaleira</a></div></div>
+      <div class="visit-row"><div class="visit-time">20:00</div><div class="visit-info"><div class="visit-name">Llegada Hotel Lisboa</div></div></div>
       <div class="hotel-section">
         <h4>🏨 Hotel</h4>
         <div class="restaurant-name">Comtesse Lisbonne GuestHouse (Lisboa)</div>
-        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJdQdNVm4zGQ0RW9pw76rVYE4" target="_blank">📍 R. Direita de Palma 15, Lisboa</a>
+        <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJdQdNVm4zGQ0RW9pw76rVYE4" target="_blank">📍 R. Direita de Palma 15</a>
+        <div class="note">ℹ️ Ver tiendas cerca del hotel en el martes</div>
       </div>
     </div>
   </div>
 
-  <!-- ============ VIERNES 3 - MÉRIDA ============ -->
+  <!-- ====== VIERNES 3 - MÉRIDA ====== -->
 
   <div class="day-card" data-date="2026-04-03">
     <div class="day-header merida">
       <div><div class="day-title">Mérida → Madrid</div><div class="day-date">Viernes 3 de abril</div></div>
-      <div class="temp-badge"><span class="icon">⛅</span><span class="temp-min">7°</span><span class="temp-sep">–</span><span class="temp-max">22°</span></div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <div class="temp-badge"><span class="icon">⛅</span><span class="temp-min">7°</span><span class="temp-sep">–</span><span class="temp-max">22°</span></div>
+        <button class="info-btn" onclick="event.stopPropagation();openInfo('merida')">i</button>
+      </div>
     </div>
     <div class="day-body">
       <div class="source-tag">📡 AccuWeather (Mérida) · Nubes y claros</div>
       <div class="visit-row"><div class="visit-time">8:30</div><div class="visit-info"><div class="visit-name">Salida Hotel</div></div></div>
-      <div class="visit-row">
-        <div class="visit-time">11:30 – 13:30</div>
-        <div class="visit-info">
-          <div class="visit-name">Teatro/Foro Romano de Mérida</div>
-          <div class="visit-detail">Adulto: 17€ / +65: 8€ (9h-21h)</div>
-          <div class="visit-detail" style="color:#cc6644;font-weight:600;">⚠️ Google indica horario 9:00–18:00. Verificar si 21h es solo verano.</div>
-          <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJ-ZWdVcAmFA0Rd2pazV9qErY" target="_blank">📍 Plaza Margarita Xirgu</a>
-        </div>
-      </div>
-      <div class="visit-row">
-        <div class="visit-time">14:30 – 17:00</div>
-        <div class="visit-info"><div class="visit-name">Circo Romano y otros monumentos</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJ9caZo6ImFA0RVk--b1aLdmc" target="_blank">📍 Circo Romano</a></div>
-      </div>
-      <div class="visit-row"><div class="visit-time">21:00</div><div class="visit-info"><div class="visit-name">Llegada a Madrid</div></div></div>
+      <div class="visit-row"><div class="visit-time">11:30 – 13:30</div><div class="visit-info"><div class="visit-name">Teatro/Foro Romano de Mérida</div><div class="visit-detail">Adulto: 17€ / +65: 8€ (9h-21h)</div><div class="visit-detail" style="color:#cc6644;font-weight:600;">⚠️ Google indica 9:00–18:00. Verificar si 21h es solo verano.</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJ-ZWdVcAmFA0Rd2pazV9qErY" target="_blank">📍 Plaza Margarita Xirgu</a></div></div>
+      <!-- COMIDA 13:30–14:30 + extras inline -->
       <div class="restaurant-section">
-        <h4>🍴 Comida</h4>
-        <div class="restaurant-name">Comida rápida (Fast Food)</div>
-        <div class="restaurant-time">13:30 – 14:30</div>
-      </div>
-      <!-- EXTRAS MÉRIDA -->
-      <div class="extras-wrap">
-        <button class="extras-toggle" onclick="toggleExtras(this)">🍦☕ Heladerías y cafés en Mérida <span class="arrow">▼</span></button>
-        <div class="extras-content">
-          <div class="extras-inner">
-            <div class="extra-card">
-              <div class="extra-emoji">🍦</div>
-              <div class="extra-info">
-                <div class="extra-name">Heladería María Limones <span class="extra-rating">⭐ 4.2 (57)</span></div>
-                <div class="extra-addr">C. Sta. Eulalia 1B, centro de Mérida</div>
-                <div class="extra-detail">Viernes: 12:30–0:30 ✅ · Buena variedad, personal simpático, helados y sorbetes</div>
-                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJMaBMLgAnFA0R9PaJhaCGC6c" target="_blank">📍 Google Maps</a>
-              </div>
-            </div>
-            <div class="extra-card">
-              <div class="extra-emoji">🧁</div>
-              <div class="extra-info">
-                <div class="extra-name">Pastelería Marquesa de Pinares <span class="extra-rating">⭐ 4.6 (423)</span></div>
-                <div class="extra-addr">C. Marquesa de Pinares, 20</div>
-                <div class="extra-detail">Viernes: 9:00–14:30, 17:00–20:30 ✅ · Croissants, repostería de nivel parisino</div>
-                <div class="extra-highlight">💎 Posiblemente la mejor pastelería artesanal de Mérida</div>
-                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJW25AvuomFA0Rd741Tc7T0k0" target="_blank">📍 Google Maps</a>
-              </div>
-            </div>
-            <div class="extra-card">
-              <div class="extra-emoji">☕</div>
-              <div class="extra-info">
-                <div class="extra-name">Cafetería Pizarrín <span class="extra-rating">⭐ 4.3 (853)</span></div>
-                <div class="extra-addr">C. Calderón de la Barca, 16</div>
-                <div class="extra-detail">Viernes: 7:00–23:00 ✅ · Café, pasteles, desayunos. Muy frecuentado por locales</div>
-                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJK9k4wrgmFA0RPqRydSvIx8w" target="_blank">📍 Google Maps</a>
-              </div>
-            </div>
-          </div>
+        <h4>13:30 – 14:30</h4>
+        <div class="restaurant-name">🍴 Comida rápida (Fast Food)</div>
+        <div class="extras-wrap"><button class="extras-toggle" onclick="toggleExtras(this)">🍦☕🛒 Heladerías, cafés y tiendas en Mérida <span class="arrow">▼</span></button>
+          <div class="extras-content"><div class="extras-inner">
+            <div class="extra-card"><div class="extra-emoji">🍦</div><div class="extra-info"><div class="extra-name">Heladería María Limones <span class="extra-rating">⭐ 4.2 (57)</span></div><div class="extra-addr">C. Sta. Eulalia 1B, centro</div><div class="extra-detail">Vie: 12:30–0:30 ✅ · Variedad, personal simpático</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJMaBMLgAnFA0R9PaJhaCGC6c" target="_blank">📍 Maps</a></div></div>
+            <div class="extra-card"><div class="extra-emoji">🧁</div><div class="extra-info"><div class="extra-name">Pastelería Marquesa de Pinares <span class="extra-rating">⭐ 4.6 (423)</span></div><div class="extra-addr">C. Marquesa de Pinares, 20</div><div class="extra-detail">Vie: 9:00–14:30, 17:00–20:30 ✅ · Nivel parisino</div><div class="extra-highlight">💎 La mejor pastelería artesanal de Mérida</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJW25AvuomFA0Rd741Tc7T0k0" target="_blank">📍 Maps</a></div></div>
+            <div class="extra-card"><div class="extra-emoji">☕</div><div class="extra-info"><div class="extra-name">Cafetería Pizarrín <span class="extra-rating">⭐ 4.3 (853)</span></div><div class="extra-addr">C. Calderón de la Barca, 16</div><div class="extra-detail">Vie: 7:00–23:00 ✅ · Café, pasteles. Frecuentado por locales</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJK9k4wrgmFA0RPqRydSvIx8w" target="_blank">📍 Maps</a></div></div>
+            <div class="extra-card"><div class="extra-emoji">🏪</div><div class="extra-info"><div class="extra-name">Supermercados Covirán <span class="extra-rating">⭐ 4.3 (102)</span></div><div class="extra-addr">C. Sagasta, 4 · Junto al Templo de Diana</div><div class="extra-detail">Vie: 9:15–21:00 ✅ · Céntrico, bebidas frías, pan</div><div class="extra-highlight">💎 A pasos del Foro Romano</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJzU-nY78mFA0RQJNCJqIKvyo" target="_blank">📍 Maps</a></div></div>
+          </div></div>
         </div>
       </div>
-      <div class="extras-wrap">
-        <button class="extras-toggle" onclick="toggleExtras(this)">🛒 Tiendas de alimentación en Mérida <span class="arrow">▼</span></button>
-        <div class="extras-content">
-          <div class="extras-inner">
-            <div class="extra-card">
-              <div class="extra-emoji">🏪</div>
-              <div class="extra-info">
-                <div class="extra-name">Supermercados Covirán <span class="extra-rating">⭐ 4.3 (102)</span></div>
-                <div class="extra-addr">C. Sagasta, 4 · Junto al Templo de Diana</div>
-                <div class="extra-detail">Viernes: 9:15–21:00 ✅ · Céntrico, snacks, bebidas frías, pan recién hecho</div>
-                <div class="extra-highlight">💎 El súper más céntrico — a pasos del Foro Romano</div>
-                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJzU-nY78mFA0RQJNCJqIKvyo" target="_blank">📍 Google Maps</a>
-              </div>
-            </div>
-            <div class="extra-card">
-              <div class="extra-emoji">🏪</div>
-              <div class="extra-info">
-                <div class="extra-name">Cash Fresh – Mérida <span class="extra-rating">⭐ 4.2 (570)</span></div>
-                <div class="extra-addr">C. Octavio Augusto, 53</div>
-                <div class="extra-detail">Viernes: 9:00–21:30 ✅ · Gran surtido, fruta, panadería, precios bajos</div>
-                <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJh8Zd7KQmFA0R9aFfGLKUtIk" target="_blank">📍 Google Maps</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <div class="visit-row"><div class="visit-time">14:30 – 17:00</div><div class="visit-info"><div class="visit-name">Circo Romano y otros monumentos</div><a class="map-link" href="https://www.google.com/maps/search/?api=1&query=place&query_place_id=ChIJ9caZo6ImFA0RVk--b1aLdmc" target="_blank">📍 Circo Romano</a></div></div>
+      <div class="visit-row"><div class="visit-time">21:00</div><div class="visit-info"><div class="visit-name">Llegada a Madrid</div></div></div>
     </div>
   </div>
 
   <div class="weather-note">
-    Temperaturas del Excel del viaje · Fuentes meteorológicas: <strong>Meteored</strong> y <strong>AccuWeather</strong><br>
-    Direcciones verificadas en Google Maps el 28 de marzo de 2026<br>
-    <strong>Correcciones aplicadas vs. Excel:</strong> restaurante Sintra, horas de hotel, horarios Marvão.<br>
-    <strong>Extras:</strong> Heladerías, cafés y tiendas buscados en Google Maps el 29 de marzo de 2026 · Solo sitios con ⭐ 3.8+
+    Temperaturas del Excel del viaje · Fuentes: <strong>Meteored</strong> y <strong>AccuWeather</strong><br>
+    Direcciones verificadas en Google Maps · 28-29 marzo 2026<br>
+    <strong>Correcciones:</strong> restaurante Sintra, horas hotel, horarios Marvão<br>
+    <strong>Extras:</strong> Heladerías, cafés, pastelerías y tiendas buscados en Google Maps · ⭐ 3.8+
   </div>
 
 <button class="toggle-btn" id="togglePast">📋 Mostrar días pasados</button>
@@ -734,34 +411,282 @@ h1 { font-size: 1.6rem; }
 </div>
 
 <script>
-function toggleExtras(btn) {
-  btn.classList.toggle('open');
-  btn.nextElementSibling.classList.toggle('open');
-}
-(function() {
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  const cards = document.querySelectorAll('.day-card[data-date]');
-  const toggleBtn = document.getElementById('togglePast');
-  let hasPast = false, showingAll = false;
-  cards.forEach(card => {
-    const cardDate = new Date(card.getAttribute('data-date') + 'T00:00:00');
-    if (cardDate < today) {
-      card.classList.add('past');
-      hasPast = true;
-      card.querySelector('.day-header').addEventListener('click', function() { card.classList.toggle('expanded'); });
-    }
+function toggleExtras(btn){btn.classList.toggle('open');btn.nextElementSibling.classList.toggle('open')}
+(function(){
+  var today=new Date();today.setHours(0,0,0,0);
+  var cards=document.querySelectorAll('.day-card[data-date]');
+  var tb=document.getElementById('togglePast'),hp=false,sa=false;
+  cards.forEach(function(c){
+    var d=new Date(c.getAttribute('data-date')+'T00:00:00');
+    if(d<today){c.classList.add('past');hp=true;c.querySelector('.day-header').addEventListener('click',function(){c.classList.toggle('expanded')})}
   });
-  if (hasPast) toggleBtn.classList.add('visible');
-  toggleBtn.addEventListener('click', function() {
-    showingAll = !showingAll;
-    cards.forEach(card => {
-      if (card.classList.contains('past')) { showingAll ? card.classList.add('expanded') : card.classList.remove('expanded'); }
-    });
-    toggleBtn.textContent = showingAll ? '🙈 Ocultar días pasados' : '📋 Mostrar días pasados';
+  if(hp)tb.classList.add('visible');
+  tb.addEventListener('click',function(){
+    sa=!sa;cards.forEach(function(c){if(c.classList.contains('past')){sa?c.classList.add('expanded'):c.classList.remove('expanded')}});
+    tb.textContent=sa?'🙈 Ocultar días pasados':'📋 Mostrar días pasados';
   });
 })();
+
+function openInfo(id){document.getElementById('modal-'+id).classList.add('open')}
+function closeInfo(id){
+  document.getElementById('modal-'+id).classList.remove('open');
+  if(window.speechSynthesis.speaking){window.speechSynthesis.cancel();document.querySelectorAll('.speech-btn').forEach(function(b){b.classList.remove('playing');b.innerHTML='🔊 Escuchar'})}
+}
+document.querySelectorAll('.modal-overlay').forEach(function(m){m.addEventListener('click',function(e){if(e.target===m){m.classList.remove('open');if(window.speechSynthesis.speaking){window.speechSynthesis.cancel();document.querySelectorAll('.speech-btn').forEach(function(b){b.classList.remove('playing');b.innerHTML='🔊 Escuchar'})}}})});
+
+var currentSpeechId=null;
+function toggleSpeech(id,btn){
+  if(window.speechSynthesis.speaking && currentSpeechId===id){
+    window.speechSynthesis.cancel();
+    btn.classList.remove('playing');btn.innerHTML='🔊 Escuchar';
+    currentSpeechId=null;return;
+  }
+  if(window.speechSynthesis.speaking){window.speechSynthesis.cancel();document.querySelectorAll('.speech-btn').forEach(function(b){b.classList.remove('playing');b.innerHTML='🔊 Escuchar'})}
+  var modal=document.getElementById('modal-'+id);
+  var body=modal.querySelector('.modal-body');
+  var text='';
+  body.querySelectorAll('.modal-section').forEach(function(sec){
+    var title=sec.querySelector('.modal-section-title');
+    if(title)text+=title.textContent.trim()+'. ';
+    sec.querySelectorAll('.modal-fact').forEach(function(f){text+=f.textContent.trim()+'. '});
+  });
+  if(!text)return;
+  var utter=new SpeechSynthesisUtterance(text);
+  utter.lang='es-ES';utter.rate=0.92;utter.pitch=1;
+  var voices=window.speechSynthesis.getVoices();
+  var esVoice=voices.find(function(v){return v.lang.startsWith('es')});
+  if(esVoice)utter.voice=esVoice;
+  btn.classList.add('playing');btn.innerHTML='⏹️ Parar';currentSpeechId=id;
+  utter.onend=function(){btn.classList.remove('playing');btn.innerHTML='🔊 Escuchar';currentSpeechId=null};
+  utter.onerror=function(){btn.classList.remove('playing');btn.innerHTML='🔊 Escuchar';currentSpeechId=null};
+  window.speechSynthesis.speak(utter);
+}
+if(window.speechSynthesis){window.speechSynthesis.getVoices()}
 </script>
+
+<!-- ===== MODALS ===== -->
+
+<div class="modal-overlay" id="modal-plasencia">
+  <div class="modal-box">
+    <div class="modal-header"><div class="modal-title">🏰 Plasencia</div><div style="display:flex;gap:8px"><button class="speech-btn" onclick="toggleSpeech('plasencia',this)">🔊 Escuchar</button><button class="modal-close" onclick="closeInfo('plasencia')">✕</button></div></div>
+    <div class="modal-body">
+      <div class="modal-section">
+        <div class="modal-section-title history"><span class="modal-emoji">📜</span> Historia</div>
+        <div class="modal-fact">Fundada en 1186 por Alfonso VIII de Castilla, pero por deseo de su esposa Leonor de Plantagenet, hermana de Ricardo Corazón de León, que se enamoró del meandro del río Jerte.</div>
+        <div class="modal-fact">Su nombre viene del lema latino «Ut placeat Deo et hominibus» (para agradar a Dios y a los hombres).</div>
+        <div class="modal-fact">Tiene dos catedrales en una: la Vieja (s.XIII-XV, románico-gótico) y la Nueva (renacentista), unidas entre sí. La Nueva se empezó a construir sobre la Vieja pero nunca se terminó.</div>
+        <div class="modal-fact">La muralla llegó a tener 71 torres; hoy se conservan 21 y 4 puertas. En la Torre Lucía se hacía fuego por las noches para guiar a los caminantes.</div>
+      </div>
+      <div class="modal-divider"></div>
+      <div class="modal-section">
+        <div class="modal-section-title fun"><span class="modal-emoji">🤓</span> Curiosidades</div>
+        <div class="modal-fact">En la Plaza Mayor está el Abuelo Mayorga, un autómata con ropajes renacentistas que toca la campana del Ayuntamiento cada hora. Mide 2 metros y pesa 85 kg.</div>
+        <div class="modal-fact">En la Plaza Mayor también está la casa más estrecha de España. La gente se saca fotos «cogiéndola» con los dedos.</div>
+        <div class="modal-fact">Cada martes se celebra mercado en la Plaza Mayor, un privilegio otorgado por los Reyes en el fuero fundacional hace casi 9 siglos.</div>
+      </div>
+      <div class="modal-divider"></div>
+      <div class="modal-section">
+        <div class="modal-section-title food"><span class="modal-emoji">🍽️</span> Qué probar</div>
+        <div class="modal-fact"><strong>Torta del Casar</strong> — queso cremoso untable que se come con cuchara, denominación de origen. El imprescindible.</div>
+        <div class="modal-fact"><strong>Cerdo ibérico</strong> — parrillada de secreto, pluma o presa ibérica con vino de pitarra (vino casero extremeño).</div>
+        <div class="modal-fact"><strong>Migas extremeñas</strong> — migas de pan con torreznos, pimiento y uva.</div>
+        <div class="modal-fact"><strong>Perrunillas</strong> — galletas típicas de manteca con azúcar glas. También floretas y pestiños.</div>
+      </div>
+      <div class="modal-divider"></div>
+      <div class="modal-section">
+        <div class="modal-section-title media"><span class="modal-emoji">📱</span> Multimedia y enlaces útiles</div>
+        <a class="modal-link" href="https://www.visitaplasencia.com/plasencia" target="_blank"><div class="modal-link-icon">🌐</div><div class="modal-link-text"><div class="modal-link-title">Visita Plasencia – Web oficial</div><div class="modal-link-desc">Mapa interactivo, rutas, horarios y tours guiados</div></div><div class="modal-link-badge official">OFICIAL</div></a>
+        <a class="modal-link" href="https://www.google.com/maps/d/viewer?mid=1Yt7x&ll=40.03,-6.09" target="_blank"><div class="modal-link-icon">🗺️</div><div class="modal-link-text"><div class="modal-link-title">Google Maps – Plasencia offline</div><div class="modal-link-desc">Descargad el mapa de Plasencia en Google Maps antes de salir para tenerlo sin datos</div></div><div class="modal-link-badge useful">CONSEJO</div></a>
+        <a class="modal-link" href="https://contenidos.plasencia.es/en/gastronomia-4/" target="_blank"><div class="modal-link-icon">🍽️</div><div class="modal-link-text"><div class="modal-link-title">Guía gastronómica de Plasencia</div><div class="modal-link-desc">Platos típicos, recetas extremeñas y productos locales</div></div><div class="modal-link-badge free">GRATIS</div></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-marvao">
+  <div class="modal-box">
+    <div class="modal-header"><div class="modal-title">🦅 Marvão</div><div style="display:flex;gap:8px"><button class="speech-btn" onclick="toggleSpeech('marvao',this)">🔊 Escuchar</button><button class="modal-close" onclick="closeInfo('marvao')">✕</button></div></div>
+    <div class="modal-body">
+      <div class="modal-section">
+        <div class="modal-section-title history"><span class="modal-emoji">📜</span> Historia</div>
+        <div class="modal-fact">El nombre viene de Ibn Marwan, un guerrero rebelde árabe que en el siglo IX se refugió en este monte y construyó un castillo en el lugar más inaccesible que encontró.</div>
+        <div class="modal-fact">El castillo se conocía como «Nido de Águilas» porque estas aves nidificaban en sus peñascos a 850 m de altitud. Desde la Torre del Homenaje, según el dicho popular, «se ven las espaldas de los pájaros».</div>
+        <div class="modal-fact">A pesar de haber sido asediado muchas veces a lo largo de los siglos por castellanos, españoles y franceses, el castillo nunca fue conquistado por la fuerza — siempre cayó por negociación o rendición.</div>
+        <div class="modal-fact">En 1995 se descubrieron cerca las ruinas de Ammaia, una próspera ciudad romana del siglo I a.C. de unas 3.000 hectáreas dedicada al vino y al aceite.</div>
+      </div>
+      <div class="modal-divider"></div>
+      <div class="modal-section">
+        <div class="modal-section-title fun"><span class="modal-emoji">🤓</span> Curiosidades</div>
+        <div class="modal-fact">Marvão tiene solo unos 600 habitantes y pierde aproximadamente un vecino por semana. La villa entera cabe dentro de las murallas.</div>
+        <div class="modal-fact">Es candidata a Patrimonio de la Humanidad por la UNESCO desde el año 2000, pero todavía no ha sido declarada.</div>
+        <div class="modal-fact">José Saramago escribió: «Desde Marvão se ve toda la tierra… es comprensible que desde aquí, en lo alto, los visitantes murmuren respetuosamente: qué grande es el mundo».</div>
+        <div class="modal-fact">Cada octubre se celebra la Almossassa, fiesta medieval donde las calles se llenan de música árabe y recreaciones de la época musulmana.</div>
+      </div>
+      <div class="modal-divider"></div>
+      <div class="modal-section">
+        <div class="modal-section-title food"><span class="modal-emoji">🍽️</span> Qué probar</div>
+        <div class="modal-fact"><strong>Porco preto alentejano</strong> — cerdo negro criado en dehesas de la zona, base de la gastronomía local.</div>
+        <div class="modal-fact"><strong>Queijo de cabra</strong> — queso de cabra curado de la Serra de São Mamede.</div>
+        <div class="modal-fact"><strong>Galletas de castaña</strong> — en Marvão Com Gosto las hacen al momento (las olíais en la calle si pasáis).</div>
+        <div class="modal-fact"><strong>Vinos del Alentejo</strong> — tintos potentes y con cuerpo. Pedid recomendación en Grocery Marvão.</div>
+      </div>
+      <div class="modal-divider"></div>
+      <div class="modal-section">
+        <div class="modal-section-title media"><span class="modal-emoji">📱</span> Multimedia y enlaces útiles</div>
+        <a class="modal-link" href="https://www.visitportugal.com/en/NR/exeres/821F233B-595C-459A-96E0-ADE3C20F1B51" target="_blank"><div class="modal-link-icon">🌐</div><div class="modal-link-text"><div class="modal-link-title">Visit Portugal – Marvão</div><div class="modal-link-desc">Guía oficial de turismo de Portugal sobre Marvão</div></div><div class="modal-link-badge official">OFICIAL</div></a>
+        <a class="modal-link" href="https://www.visitportugal.com/en/content/castelo-de-marvao" target="_blank"><div class="modal-link-icon">🏰</div><div class="modal-link-text"><div class="modal-link-title">Castelo de Marvão – Info</div><div class="modal-link-desc">Horarios, historia y detalles del castillo</div></div><div class="modal-link-badge free">GRATIS</div></a>
+        <a class="modal-link" href="https://en.wikipedia.org/wiki/Marv%C3%A3o" target="_blank"><div class="modal-link-icon">📖</div><div class="modal-link-text"><div class="modal-link-title">Wikipedia – Historia completa de Marvão</div><div class="modal-link-desc">Desde los dólmenes del 3000 a.C. hasta hoy. Muy detallada</div></div><div class="modal-link-badge free">GRATIS</div></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-fatima">
+  <div class="modal-box">
+    <div class="modal-header"><div class="modal-title">🕊️ Fátima + Lisboa</div><div style="display:flex;gap:8px"><button class="speech-btn" onclick="toggleSpeech('fatima',this)">🔊 Escuchar</button><button class="modal-close" onclick="closeInfo('fatima')">✕</button></div></div>
+    <div class="modal-body">
+      <div class="modal-section">
+        <div class="modal-section-title history"><span class="modal-emoji">📜</span> Historia</div>
+        <div class="modal-fact"><strong>Fátima:</strong> El nombre del pueblo viene de una princesa mora llamada Fátima que fue capturada durante la Reconquista y se convirtió al cristianismo. Se dice que un noble cristiano se enamoró de ella.</div>
+        <div class="modal-fact">Las apariciones de la Virgen a los tres pastorcitos ocurrieron en 1917, en plena Primera Guerra Mundial. Hoy es uno de los centros de peregrinación católica más importantes del mundo.</div>
+        <div class="modal-fact"><strong>Alfama:</strong> Es el barrio más antiguo de Lisboa. Sobrevivió al devastador terremoto de 1755 gracias a estar construido sobre roca firme, mientras el resto de Lisboa quedó destruido.</div>
+        <div class="modal-fact">El Castillo de San Jorge fue residencia real durante siglos y ofrece las mejores vistas panorámicas de Lisboa. Los moros lo llamaban «al-hisn» (la fortaleza).</div>
+      </div>
+      <div class="modal-divider"></div>
+      <div class="modal-section">
+        <div class="modal-section-title fun"><span class="modal-emoji">🤓</span> Curiosidades</div>
+        <div class="modal-fact">Alfama es la cuna del fado, la música tradicional portuguesa declarada Patrimonio Inmaterial de la Humanidad. Por la noche se puede escuchar en casas de fado del barrio.</div>
+        <div class="modal-fact">Las calles de Alfama son tan estrechas que los vecinos se pasan cosas de ventana a ventana. Muchas no tienen nombre oficial.</div>
+      </div>
+      <div class="modal-divider"></div>
+      <div class="modal-section">
+        <div class="modal-section-title food"><span class="modal-emoji">🍽️</span> Qué probar</div>
+        <div class="modal-fact"><strong>Bacalhau à Brás</strong> — bacalao desmigado con huevo revuelto, patatas paja y aceitunas. Hay más de 1.000 recetas de bacalao en Portugal.</div>
+        <div class="modal-fact"><strong>Ginjinha</strong> — licor de guinda típico de Lisboa. Se toma en chupito en los quioscos del Rossio.</div>
+        <div class="modal-fact"><strong>Pastel de nata</strong> — el dulce estrella. Alfama Doce (⭐4.9) los hace caseros y recién sacados del horno.</div>
+        <div class="modal-fact"><strong>Bifana</strong> — bocadillo de cerdo marinado en ajo y pimentón. Comida callejera lisboeta por excelencia.</div>
+      </div>
+      <div class="modal-divider"></div>
+      <div class="modal-section">
+        <div class="modal-section-title media"><span class="modal-emoji">📱</span> Multimedia y enlaces útiles</div>
+        <a class="modal-link" href="https://www.fatima.pt/en/" target="_blank"><div class="modal-link-icon">🕊️</div><div class="modal-link-text"><div class="modal-link-title">Santuario de Fátima – Web oficial</div><div class="modal-link-desc">Horarios de misas, mapa del recinto y transmisión en directo</div></div><div class="modal-link-badge official">OFICIAL</div></a>
+        <a class="modal-link" href="https://castelodesaojorge.pt/en/" target="_blank"><div class="modal-link-icon">🏰</div><div class="modal-link-text"><div class="modal-link-title">Castelo de São Jorge – Web oficial</div><div class="modal-link-desc">Entradas, horarios e info de la visita. Con Lisboa Card es gratis</div></div><div class="modal-link-badge official">OFICIAL</div></a>
+        <a class="modal-link" href="https://lisboa-card.com/" target="_blank"><div class="modal-link-icon">💳</div><div class="modal-link-text"><div class="modal-link-title">Lisboa Card – Comprar/Info</div><div class="modal-link-desc">Transporte ilimitado + 51 atracciones gratis + descuentos. Se recoge en el aeropuerto</div></div><div class="modal-link-badge useful">IMPRESCINDIBLE</div></a>
+        <a class="modal-link" href="https://www.metrolisboa.pt/en/" target="_blank"><div class="modal-link-icon">🚇</div><div class="modal-link-text"><div class="modal-link-title">Metro de Lisboa – Mapa y horarios</div><div class="modal-link-desc">Plano de líneas, calculador de rutas. Incluido en Lisboa Card</div></div><div class="modal-link-badge free">GRATIS</div></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-lisboa">
+  <div class="modal-box">
+    <div class="modal-header"><div class="modal-title">⚓ Lisboa (Belém)</div><div style="display:flex;gap:8px"><button class="speech-btn" onclick="toggleSpeech('lisboa',this)">🔊 Escuchar</button><button class="modal-close" onclick="closeInfo('lisboa')">✕</button></div></div>
+    <div class="modal-body">
+      <div class="modal-section">
+        <div class="modal-section-title history"><span class="modal-emoji">📜</span> Historia</div>
+        <div class="modal-fact">El Monasterio de los Jerónimos se construyó con el dinero del comercio de especias de Oriente. Vasco da Gama partió hacia la India desde este mismo lugar en 1497 y sus restos reposan dentro del monasterio.</div>
+        <div class="modal-fact">La Torre de Belém se construyó en 1515 como fortaleza defensiva en medio del río Tajo. Hoy está en la orilla porque el terremoto de 1755 cambió el curso del río.</div>
+        <div class="modal-fact">Belém significa «Belén» en portugués. Era desde aquí desde donde los exploradores zarpaban hacia lo desconocido durante la Era de los Descubrimientos.</div>
+      </div>
+      <div class="modal-divider"></div>
+      <div class="modal-section">
+        <div class="modal-section-title fun"><span class="modal-emoji">🤓</span> Curiosidades</div>
+        <div class="modal-fact">Los Pastéis de Belém se elaboran según una receta secreta de 1837, creada por monjes del Monasterio de los Jerónimos. Solo 3 personas conocen la receta completa.</div>
+        <div class="modal-fact">El Monumento a los Descubrimientos tiene forma de carabela y mide 52 m. En el suelo hay una rosa de los vientos gigante de 50 m de diámetro regalada por Sudáfrica.</div>
+        <div class="modal-fact">Lisboa es la capital más occidental de Europa continental y una de las más antiguas del mundo, anterior incluso a Roma.</div>
+      </div>
+      <div class="modal-divider"></div>
+      <div class="modal-section">
+        <div class="modal-section-title food"><span class="modal-emoji">🍽️</span> Qué probar en Belém</div>
+        <div class="modal-fact"><strong>Pastel de nata de Pastéis de Belém</strong> — con canela y azúcar glas. El original. La cola es larga pero hay sitio dentro (el local es enorme).</div>
+        <div class="modal-fact"><strong>Manteigaria</strong> (R. Belém 31) — la alternativa sin cola, misma calidad. Ves cómo los hacen en directo.</div>
+        <div class="modal-fact"><strong>Vinho verde</strong> — vino blanco joven y ligeramente espumoso, ideal con marisco. Muy refrescante.</div>
+      </div>
+      <div class="modal-divider"></div>
+      <div class="modal-section">
+        <div class="modal-section-title media"><span class="modal-emoji">📱</span> Multimedia y enlaces útiles</div>
+        <a class="modal-link" href="https://www.mosteirojeronimos.gov.pt/en/" target="_blank"><div class="modal-link-icon">⛪</div><div class="modal-link-text"><div class="modal-link-title">Monasterio Jerónimos – Web oficial</div><div class="modal-link-desc">Horarios, entradas y recorrido virtual. Gratis con Lisboa Card</div></div><div class="modal-link-badge official">OFICIAL</div></a>
+        <a class="modal-link" href="https://www.visitlisboa.com/en" target="_blank"><div class="modal-link-icon">🌐</div><div class="modal-link-text"><div class="modal-link-title">Visit Lisboa – Guía oficial de turismo</div><div class="modal-link-desc">Eventos, rutas, mapa interactivo y agenda cultural</div></div><div class="modal-link-badge official">OFICIAL</div></a>
+        <a class="modal-link" href="https://pafrfrfrsteisdebelem.pt/" target="_blank"><div class="modal-link-icon">🥧</div><div class="modal-link-text"><div class="modal-link-title">Pastéis de Belém – Web oficial</div><div class="modal-link-desc">Historia, horarios. Consejo: hay mucho sitio dentro aunque la cola sea larga</div></div><div class="modal-link-badge free">GRATIS</div></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-sintra">
+  <div class="modal-box">
+    <div class="modal-header"><div class="modal-title">🏰 Sintra</div><div style="display:flex;gap:8px"><button class="speech-btn" onclick="toggleSpeech('sintra',this)">🔊 Escuchar</button><button class="modal-close" onclick="closeInfo('sintra')">✕</button></div></div>
+    <div class="modal-body">
+      <div class="modal-section">
+        <div class="modal-section-title history"><span class="modal-emoji">📜</span> Historia</div>
+        <div class="modal-fact"><strong>Palacio da Pena:</strong> Fue el primer palacio romántico de Europa (terminado en 1854). Fernando II de Portugal mezcló intencionadamente estilos neo-gótico, neo-islámico, neo-manuelino y neo-renacentista para crear algo nunca visto. Está sobre las ruinas de un monasterio jerónimo del siglo XV.</div>
+        <div class="modal-fact"><strong>Quinta da Regaleira:</strong> Construida entre 1904-1910 por un millonario excéntrico llamado Carvalho Monteiro (apodado «Monteiro de los Millones»), con diseño del escenógrafo italiano Luigi Manini. Todo el lugar está lleno de simbolismo masónico, templario y rosacruz.</div>
+      </div>
+      <div class="modal-divider"></div>
+      <div class="modal-section">
+        <div class="modal-section-title fun"><span class="modal-emoji">🤓</span> Curiosidades</div>
+        <div class="modal-fact">El «Pozo Iniciático» de la Regaleira no es un pozo real: es una torre invertida de 27 m con escalera espiral de 9 tramos. Se cree que los candidatos a la hermandad bajaban con los ojos vendados y una espada sobre el corazón, y debían encontrar la salida por un laberinto subterráneo hasta la capilla.</div>
+        <div class="modal-fact">Los locales llamaron al palacio «el Bolo de Novia» (tarta de boda) por su aspecto tan recargado y blanco.</div>
+        <div class="modal-fact">Lord Byron visitó Sintra y la describió como «el Edén glorioso». Sintra fue declarada Patrimonio de la Humanidad en 1995.</div>
+        <div class="modal-fact">El Palacio da Pena se pintó de colores vivos (rojo y amarillo) por decisión de Fernando II, que quería que se viera desde Lisboa. Originalmente era de piedra gris.</div>
+      </div>
+      <div class="modal-divider"></div>
+      <div class="modal-section">
+        <div class="modal-section-title food"><span class="modal-emoji">🍽️</span> Qué probar</div>
+        <div class="modal-fact"><strong>Travesseiro</strong> — hojaldre alargado relleno de crema de almendra y huevo. El clásico de Casa Piriquita desde 1862.</div>
+        <div class="modal-fact"><strong>Queijada de Sintra</strong> — tartaleta de queso fresco, canela, azúcar y huevo. Receta con siglos de historia. En Gelato Della Linea la han convertido en sabor de helado.</div>
+        <div class="modal-fact"><strong>Piriquita</strong> — galleta hojaldrada que da nombre a la pastelería más famosa de Sintra.</div>
+      </div>
+      <div class="modal-divider"></div>
+      <div class="modal-section">
+        <div class="modal-section-title media"><span class="modal-emoji">📱</span> Multimedia y enlaces útiles</div>
+        <a class="modal-link" href="https://www.parquesdesintra.pt/en/" target="_blank"><div class="modal-link-icon">🏰</div><div class="modal-link-text"><div class="modal-link-title">Parques de Sintra – Web oficial</div><div class="modal-link-desc">Tickets Palacio da Pena, horarios, mapa del parque y transporte</div></div><div class="modal-link-badge official">OFICIAL</div></a>
+        <a class="modal-link" href="https://www.regaleira.pt/en/" target="_blank"><div class="modal-link-icon">🔮</div><div class="modal-link-text"><div class="modal-link-title">Quinta da Regaleira – Web oficial</div><div class="modal-link-desc">Tickets, eventos y mapa interactivo de los jardines y túneles</div></div><div class="modal-link-badge official">OFICIAL</div></a>
+        <a class="modal-link" href="https://visitsintra.travel/" target="_blank"><div class="modal-link-icon">🌐</div><div class="modal-link-text"><div class="modal-link-title">Visit Sintra – Guía turística</div><div class="modal-link-desc">Rutas, transporte, autobús 434 y consejos prácticos</div></div><div class="modal-link-badge free">GRATIS</div></a>
+        <a class="modal-link" href="#" onclick="event.preventDefault();alert('💡 CONSEJO: En Google Maps, descargad el mapa offline de Sintra. La cobertura móvil es mala en la sierra.')"><div class="modal-link-icon">📡</div><div class="modal-link-text"><div class="modal-link-title">Descargad mapa offline de Sintra</div><div class="modal-link-desc">La cobertura móvil es mala en la sierra. Descargad antes en Google Maps</div></div><div class="modal-link-badge useful">IMPORTANTE</div></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modal-merida">
+  <div class="modal-box">
+    <div class="modal-header"><div class="modal-title">🏛️ Mérida</div><div style="display:flex;gap:8px"><button class="speech-btn" onclick="toggleSpeech('merida',this)">🔊 Escuchar</button><button class="modal-close" onclick="closeInfo('merida')">✕</button></div></div>
+    <div class="modal-body">
+      <div class="modal-section">
+        <div class="modal-section-title history"><span class="modal-emoji">📜</span> Historia</div>
+        <div class="modal-fact">Fundada en el 25 a.C. por orden del emperador Augusto para asentar a los soldados veteranos (eméritos) de las guerras cántabras. De ahí su nombre: Augusta Emerita.</div>
+        <div class="modal-fact">Fue capital de la provincia romana de Lusitania y llegó a tener entre 30.000 y 55.000 habitantes — posiblemente la 9ª ciudad más grande del mundo en su época.</div>
+        <div class="modal-fact">El Teatro Romano se inauguró entre los años 16-15 a.C., promovido por Agripa, el mismo que construyó el Panteón de Roma. Tenía capacidad para 6.000 espectadores.</div>
+        <div class="modal-fact">Tras el declive romano, el teatro fue abandonado en el siglo IV y quedó completamente enterrado bajo tierra. Solo se veía la parte más alta del graderío, que los locales llamaban «las 7 sillas». Hasta 1910 no se empezó a desenterrar.</div>
+      </div>
+      <div class="modal-divider"></div>
+      <div class="modal-section">
+        <div class="modal-section-title fun"><span class="modal-emoji">🤓</span> Curiosidades</div>
+        <div class="modal-fact">Aún se lee en las piedras la inscripción original con la fecha de inauguración, más de 2.000 años después.</div>
+        <div class="modal-fact">Desde 1933 se celebra el Festival Internacional de Teatro Clásico, con obras de Séneca, Eurípides, etc. representadas en el mismo escenario romano. La primera obra fue Medea, en versión de Unamuno.</div>
+        <div class="modal-fact">Se llama «la pequeña Roma de España» y su conjunto arqueológico es Patrimonio de la Humanidad desde 1993.</div>
+        <div class="modal-fact">El puente romano sobre el Guadiana mide 800 metros de largo y es uno de los más largos de la antigüedad. El nombre «Guadiana» viene del árabe «Guad» (río) + el nombre romano «Anas».</div>
+      </div>
+      <div class="modal-divider"></div>
+      <div class="modal-section">
+        <div class="modal-section-title food"><span class="modal-emoji">🍽️</span> Qué probar</div>
+        <div class="modal-fact"><strong>Pestorejo</strong> — careta de cerdo preparada como receta tradicional de matanza. El plato más auténtico de Mérida.</div>
+        <div class="modal-fact"><strong>Caldereta de cordero</strong> — guiso extremeño con pimentón de La Vera.</div>
+        <div class="modal-fact"><strong>Migas extremeñas</strong> — con torreznos, chorizo y pimiento. Plato contundente de pastor.</div>
+        <div class="modal-fact"><strong>Jamón ibérico de bellota</strong> — Extremadura tiene las mejores dehesas de encinas. Un cortadito de jamón con una caña es obligatorio.</div>
+      </div>
+      <div class="modal-divider"></div>
+      <div class="modal-section">
+        <div class="modal-section-title media"><span class="modal-emoji">📱</span> Multimedia y enlaces útiles</div>
+        <a class="modal-link" href="https://visitarmerida.info/" target="_blank"><div class="modal-link-icon">🏛️</div><div class="modal-link-text"><div class="modal-link-title">Visitar Mérida – Guía completa</div><div class="modal-link-desc">Teatro Romano, entradas, horarios actualizados y mapa de monumentos</div></div><div class="modal-link-badge official">OFICIAL</div></a>
+        <a class="modal-link" href="https://www.consorciomerida.org/" target="_blank"><div class="modal-link-icon">🎟️</div><div class="modal-link-text"><div class="modal-link-title">Consorcio de Mérida – Entrada combinada</div><div class="modal-link-desc">Una entrada para todos los monumentos: teatro, anfiteatro, circo, alcazaba, etc.</div></div><div class="modal-link-badge useful">AHORRA</div></a>
+        <a class="modal-link" href="https://www.spain.info/en/destination/merida/" target="_blank"><div class="modal-link-icon">🌐</div><div class="modal-link-text"><div class="modal-link-title">Spain.info – Mérida</div><div class="modal-link-desc">Guía oficial de turismo de España sobre Mérida y alrededores</div></div><div class="modal-link-badge free">GRATIS</div></a>
+        <a class="modal-link" href="https://es.wikipedia.org/wiki/Teatro_romano_de_M%C3%A9rida" target="_blank"><div class="modal-link-icon">📖</div><div class="modal-link-text"><div class="modal-link-title">Wikipedia – Teatro Romano de Mérida</div><div class="modal-link-desc">Historia completa, datos arquitectónicos y fotos de las excavaciones</div></div><div class="modal-link-badge free">GRATIS</div></a>
+      </div>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
