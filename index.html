@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -61,9 +60,8 @@ h1{font-family:'DM Serif Display',serif;font-size:2.2rem;text-align:center;margi
 .extras-toggle.hotel-shop{background:linear-gradient(135deg,#f0f5fa,#e8eef5);border-color:#d0dae6;color:#4a6b8a}
 .extras-toggle.hotel-shop:hover{background:linear-gradient(135deg,#e5ecf4,#dce5ef);border-color:#b8c8d8}
 @media(max-width:600px){body{padding:12px}h1{font-size:1.6rem}.day-header{padding:14px 16px;flex-direction:column;align-items:flex-start}.temp-badge{align-self:flex-start}.visit-row{flex-direction:column;gap:4px}.visit-time{min-width:auto}}
-.day-card.past .day-body{display:none}.day-card.past .day-header{opacity:.6;cursor:pointer}.day-card.past .day-header:hover{opacity:.85}
-.day-card.past .day-title::after{content:' ✓ Visitado';font-size:.7rem;font-family:'DM Sans',sans-serif;background:rgba(255,255,255,.3);padding:2px 8px;border-radius:4px;margin-left:8px;vertical-align:middle}
-.day-card.past.expanded .day-body{display:block}.day-card.past.expanded .day-header{opacity:1}
+.day-card.past{display:none}
+.day-card.past.expanded{display:block}
 .toggle-btn{display:none;width:100%;padding:14px;margin-top:18px;border:2px dashed #c4b8aa;border-radius:12px;background:transparent;color:#8a7e72;font-family:'DM Sans',sans-serif;font-size:.9rem;font-weight:600;cursor:pointer;transition:all .2s}
 .toggle-btn:hover{background:#ede7e0;color:#2d2a26}.toggle-btn.visible{display:block}
 /* INFO BUTTON - blue, far right, blinks 3s */
@@ -122,6 +120,25 @@ h1{font-family:'DM Serif Display',serif;font-size:2.2rem;text-align:center;margi
 .weather-live-advice{margin-top:10px;padding:10px 14px;background:rgba(255,255,255,.55);border-radius:10px;font-size:.8rem;font-weight:500;line-height:1.5}
 .weather-live-ts{font-size:.65rem;color:rgba(0,0,0,.35);margin-top:8px;text-align:right}
 @keyframes fadeInBanner{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+/* TOLL ALERT */
+.toll-alert{background:linear-gradient(135deg,#fff3e0,#ffe0b2);border:1.5px solid #f0c070;border-radius:14px;overflow:hidden;margin-bottom:20px}
+.toll-alert-header{padding:14px 18px;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:background .2s}
+.toll-alert-header:hover{background:rgba(255,255,255,.3)}
+.toll-alert-title{font-family:'DM Serif Display',serif;font-size:.95rem;color:#8a5a20}
+.toll-alert-hint{font-size:.72rem;color:#b08030;font-weight:500}
+.toll-alert-arrow{transition:transform .3s;font-size:.7rem;color:#b08030}
+.toll-alert-header.open .toll-alert-arrow{transform:rotate(180deg)}
+.toll-alert-content{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.toll-alert-content.open{max-height:1200px}
+.toll-alert-inner{padding:0 18px 16px}
+.toll-alert-body{font-size:.82rem;line-height:1.6;color:#5a4020}
+.toll-alert-steps{margin:10px 0;padding:0;list-style:none}
+.toll-alert-steps li{padding:6px 0;font-size:.8rem;display:flex;gap:8px;align-items:flex-start;border-bottom:1px solid rgba(200,160,80,.15)}
+.toll-alert-steps li:last-child{border-bottom:none}
+.toll-step-num{background:#e8a030;color:#fff;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.7rem;font-weight:700;flex-shrink:0}
+.toll-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.toll-link{display:inline-flex;align-items:center;gap:5px;padding:6px 12px;background:rgba(255,255,255,.7);border:1px solid #e0c890;border-radius:8px;font-size:.75rem;font-weight:600;color:#7a5020;text-decoration:none;transition:all .15s}
+.toll-link:hover{background:#fff;border-color:#c8a050;transform:translateY(-1px)}
 </style>
 </head>
 <body>
@@ -133,8 +150,8 @@ h1{font-family:'DM Serif Display',serif;font-size:2.2rem;text-align:center;margi
 
   <div class="weather-live" id="weatherBanner"></div>
 
-  <!-- ====== DOMINGO 29 - PLASENCIA ====== -->
 
+  <!-- ====== DOMINGO 29 - PLASENCIA ====== -->
   <div class="day-card" data-date="2026-03-29">
     <div class="day-header plasencia">
       <div><div class="day-title">Plasencia</div><div class="day-date">Domingo 29 de marzo</div></div>
@@ -189,7 +206,6 @@ h1{font-family:'DM Serif Display',serif;font-size:2.2rem;text-align:center;margi
   </div>
 
   <!-- ====== LUNES 30 - MARVÃO ====== -->
-
   <div class="day-card" data-date="2026-03-30">
     <div class="day-header marvao">
       <div><div class="day-title">Marvão + Castelo de Vide</div><div class="day-date">Lunes 30 de marzo</div></div>
@@ -241,7 +257,6 @@ h1{font-family:'DM Serif Display',serif;font-size:2.2rem;text-align:center;margi
   </div>
 
   <!-- ====== MARTES 31 - FÁTIMA / LISBOA ====== -->
-
   <div class="day-card" data-date="2026-03-31">
     <div class="day-header lisboa">
       <div><div class="day-title">Fátima → Lisboa</div><div class="day-date">Martes 31 de marzo</div></div>
@@ -289,7 +304,6 @@ h1{font-family:'DM Serif Display',serif;font-size:2.2rem;text-align:center;margi
   </div>
 
   <!-- ====== MIÉRCOLES 1 - LISBOA ====== -->
-
   <div class="day-card" data-date="2026-04-01">
     <div class="day-header lisboa">
       <div><div class="day-title">Lisboa <span class="changes-badge">ACTUALIZADO</span></div><div class="day-date">Miércoles 1 de abril</div></div>
@@ -333,7 +347,6 @@ h1{font-family:'DM Serif Display',serif;font-size:2.2rem;text-align:center;margi
   </div>
 
   <!-- ====== JUEVES 2 - SINTRA ====== -->
-
   <div class="day-card" data-date="2026-04-02">
     <div class="day-header sintra">
       <div><div class="day-title">Sintra <span class="fix-badge">CORREGIDO</span></div><div class="day-date">Jueves 2 de abril</div></div>
@@ -372,7 +385,6 @@ h1{font-family:'DM Serif Display',serif;font-size:2.2rem;text-align:center;margi
   </div>
 
   <!-- ====== VIERNES 3 - MÉRIDA ====== -->
-
   <div class="day-card" data-date="2026-04-03">
     <div class="day-header merida">
       <div><div class="day-title">Mérida → Madrid</div><div class="day-date">Viernes 3 de abril</div></div>
@@ -409,8 +421,7 @@ h1{font-family:'DM Serif Display',serif;font-size:2.2rem;text-align:center;margi
     <strong>Extras:</strong> Heladerías, cafés, pastelerías y tiendas buscados en Google Maps · ⭐ 3.8+
   </div>
 
-<button class="toggle-btn" id="togglePast">📋 Mostrar días pasados</button>
-
+  <button class="toggle-btn" id="togglePast">📋 Mostrar días pasados</button>
 </div>
 
 <script>
@@ -421,11 +432,12 @@ function toggleExtras(btn){btn.classList.toggle('open');btn.nextElementSibling.c
   var tb=document.getElementById('togglePast'),hp=false,sa=false;
   cards.forEach(function(c){
     var d=new Date(c.getAttribute('data-date')+'T00:00:00');
-    if(d<today){c.classList.add('past');hp=true;c.querySelector('.day-header').addEventListener('click',function(){c.classList.toggle('expanded')})}
+    if(d<today){c.classList.add('past');hp=true}
   });
   if(hp)tb.classList.add('visible');
   tb.addEventListener('click',function(){
-    sa=!sa;cards.forEach(function(c){if(c.classList.contains('past')){sa?c.classList.add('expanded'):c.classList.remove('expanded')}});
+    sa=!sa;
+    cards.forEach(function(c){if(c.classList.contains('past')){sa?c.classList.add('expanded'):c.classList.remove('expanded')}});
     tb.textContent=sa?'🙈 Ocultar días pasados':'📋 Mostrar días pasados';
   });
 })();
@@ -649,6 +661,7 @@ if(window.speechSynthesis){window.speechSynthesis.getVoices()}
         <a class="modal-link" href="https://www.visitportugal.com/en/NR/exeres/821F233B-595C-459A-96E0-ADE3C20F1B51" target="_blank"><div class="modal-link-icon">🌐</div><div class="modal-link-text"><div class="modal-link-title">Visit Portugal – Marvão</div><div class="modal-link-desc">Guía oficial de turismo de Portugal sobre Marvão</div></div><div class="modal-link-badge official">OFICIAL</div></a>
         <a class="modal-link" href="https://www.visitportugal.com/en/content/castelo-de-marvao" target="_blank"><div class="modal-link-icon">🏰</div><div class="modal-link-text"><div class="modal-link-title">Castelo de Marvão – Info</div><div class="modal-link-desc">Horarios, historia y detalles del castillo</div></div><div class="modal-link-badge free">GRATIS</div></a>
         <a class="modal-link" href="https://en.wikipedia.org/wiki/Marv%C3%A3o" target="_blank"><div class="modal-link-icon">📖</div><div class="modal-link-text"><div class="modal-link-title">Wikipedia – Historia completa de Marvão</div><div class="modal-link-desc">Desde los dólmenes del 3000 a.C. hasta hoy. Muy detallada</div></div><div class="modal-link-badge free">GRATIS</div></a>
+        <a class="modal-link" href="https://www.pttolls.com/es/node" target="_blank" style="border-color:#f0c070;background:#fff8ee"><div class="modal-link-icon">🚗</div><div class="modal-link-text"><div class="modal-link-title">⚠️ Peajes Portugal – Activar EasyToll</div><div class="modal-link-desc">¡Hacedlo ANTES de cruzar la frontera! Asociad matrícula + tarjeta online</div></div><div class="modal-link-badge useful">URGENTE</div></a>
       </div>
     </div>
   </div>
